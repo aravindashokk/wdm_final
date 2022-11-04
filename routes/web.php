@@ -40,6 +40,19 @@ Route::name('admin.')->prefix('admin')->group(function(){
     Route::get('edit-business/{slug}', [AdminDashboardController::class, 'editbusiness']) ->name('editbusiness');
     Route::patch('update-business/{slug}', [AdminDashboardController::class, 'updatebusiness']) ->name('updatebusiness');
     Route::delete('delete-business/{slug}', [AdminDashboardController::class, 'deletebusiness'])->name('deletebusiness');
+    Route::get('onboard-school', [AdminDashboardController::class, 'createschool'])->name('addschool');
+    Route::get('manage-schools', [AdminDashboardController::class, 'allschools'])->name('manageschools');
+    Route::post('store-school', [AdminDashboardController::class, 'storeschool'])->name('storeschool');
+    Route::get('edit-school/{slug}', [AdminDashboardController::class, 'editschool'])->name('editschool');
+    Route::patch('update-school/{slug}', [AdminDashboardController::class, 'updateschool'])->name('updateschool');
+    Route::delete('delete-school/{slug}', [AdminDashboardController::class, 'deleteschool'])->name('deleteschool');
+    Route::get('onboard-student', [AdminDashboardController::class, 'createstudent'])->name('addstudent');
+    Route::get('manage-students', [AdminDashboardController::class, 'allstudents'])->name('managestudents');
+    Route::post('store-student', [AdminDashboardController::class, 'storestudent'])->name('storestudent');
+    Route::get('edit-student/{slug}', [AdminDashboardController::class, 'editstudent'])->name('editstudent');
+    Route::patch('update-student/{slug}', [AdminDashboardController::class, 'updatestudent'])->name('updatestudent');
+    Route::delete('delete-student/{slug}', [AdminDashboardController::class, 'deletestudent'])->name('deletestudent');
+    Route::get('account-settings', [AdminDashboardController::class,'accountsettings'])->name('accountsettings');
 });
 
 // ::

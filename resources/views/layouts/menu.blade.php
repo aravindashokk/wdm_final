@@ -62,148 +62,161 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/new-orders') }}"><i
-                            data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">New Unpaid
-                            Orders</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/completed-orders') }}"><i
-                            data-feather="message-square"></i><span class="menu-title text-truncate"
-                            data-i18n="Chat">Completed Orders</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center"
-                        href="{{ url('admin/orders-in-progress') }}"><i data-feather="check-square"></i><span
-                            class="menu-title text-truncate" data-i18n="Todo">Orders In Progress</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center"
-                        href="{{ url('admin/orders-in-revision') }}"><i data-feather="calendar"></i><span
-                            class="menu-title text-truncate" data-i18n="Calendar">Disputed Orders</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/orders') }}"><i
-                            data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Kanban">All
-                            Orders</span></a>
-                </li>
-                <li class="nav-item"><a class="d-flex align-items-center" href="{{ url('admin/cancelled-orders') }}"><i
-                            data-feather="eye-off"></i><span class="menu-title text-truncate"
-                            data-i18n="Disabled Menu">Cancelled Orders</span></a>
-                </li>
-                @role('admin')
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                                data-feather="file-text"></i><span class="menu-title text-truncate"
-                                data-i18n="Invoice">Businesses</span></a>
-                        <ul class="menu-content">
-                            @permission('manage-business')
-                                <li><a class="d-flex align-items-center" href="{{ route('admin.addbusiness') }}"><i data-feather="circle"></i><span
-                                            class="menu-item text-truncate" data-i18n="List">Add Business</span></a>
-                                </li>
-                                <li><a class="d-flex align-items-center" href="{{ route('admin.managebusiness') }}"><i data-feather="circle"></i><span
-                                            class="menu-item text-truncate" data-i18n="Preview">Manage Businesses</span></a>
-                                </li>
-                            @endpermission
-                        </ul>
+            @endrole
+            @role('admin')
+                @permission('manage-schools')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.addschool') }}"><i
+                                data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Create New
+                                School</span></a>
                     </li>
-                @endrole
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate"
-                            data-i18n="Invoice">Chat</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ url('admin/conversations') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All
-                                    Chats</span></a>
-                        </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.manageschools') }}"><i
+                                data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Manage
+                                Schools</span></a>
+                    </li>
+                @endpermission
+                @permission('manage-business')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.addbusiness') }}"><i
+                                data-feather="check-square"></i><span class="menu-title text-truncate"
+                                data-i18n="Todo">Onboard Business</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.managebusiness') }}"><i
+                                data-feather="calendar"></i><span class="menu-title text-truncate"
+                                data-i18n="Calendar">Manage Businesses</span></a>
+                    </li>
+                @endpermission
+                @permission('manage-students')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.addstudent') }}"><i
+                                data-feather="check-square"></i><span class="menu-title text-truncate"
+                                data-i18n="Todo">Onboard Student</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.managestudents') }}"><i
+                                data-feather="calendar"></i><span class="menu-title text-truncate"
+                                data-i18n="Calendar">Manage Students</span></a>
+                    </li>
+                @endpermission
+                @permission('manage-chats')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/orders') }}"><i
+                                data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Kanban">All
+                                Chats</span></a>
 
-                    </ul>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center"
-                        href="{{ url('admin/filter-order-details') }}"><i data-feather="save"></i><span
-                            class="menu-title text-truncate" data-i18n="Back Up Website">Filter Orders</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="shield"></i><span class="menu-title text-truncate"
-                            data-i18n="Roles &amp; Permission">Settings</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Roles">Roles </span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Permission">Audit Logs</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="shopping-cart"></i><span class="menu-title text-truncate"
-                            data-i18n="eCommerce">Bids</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Shop">All Bids</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Details">Pending Bids</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Wish List">Confirmed Bids</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Checkout">Denied Bids</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="user"></i><span class="menu-title text-truncate"
-                            data-i18n="User">Writers</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="app-user-list.html"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="List">List</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="View">View</span></a>
-                            <ul class="menu-content">
-                                <li><a class="d-flex align-items-center" href="#"><span
-                                            class="menu-item text-truncate" data-i18n="Account">Accounts</span></a>
-                                </li>
-                                <li><a class="d-flex align-items-center" href="#"><span
-                                            class="menu-item text-truncate" data-i18n="Security">Payments</span></a>
-                                </li>
-                                <li><a class="d-flex align-items-center" href="#"><span
-                                            class="menu-item text-truncate" data-i18n="Billing &amp; Plans">Billing
-                                            &amp; Plans</span></a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Sample
-                            Questions</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ url('admin/createblogquiz') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Account Settings">Upload New</span></a>
-
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/all-payments') }}"><i
-                            data-feather="square"></i><span class="menu-title text-truncate"
-                            data-i18n="Modal Examples">All Payments</span></a>
-                </li>
-                <li class=" navigation-header"><span data-i18n="User Interface">Shortcuts</span><i
-                        data-feather="more-horizontal"></i>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/account-settings') }}"><i
-                            data-feather="type"></i><span class="menu-title text-truncate"
-                            data-i18n="Typography">Avatar</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/account-settings') }}"><i
-                            data-feather="eye"></i><span class="menu-title text-truncate"
-                            data-i18n="Feather">Password</span></a>
+                    </li>
+                @endpermission
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
+                            data-feather="shield"></i><span class="menu-title text-truncate" data-i18n="Roles">All
+                            Roles</span></a>
                 </li>
             @endrole
+
+
+
+
+
+            <li class="nav-item"><a class="d-flex align-items-center" href="{{ url('admin/cancelled-orders') }}"><i
+                        data-feather="eye-off"></i><span class="menu-title text-truncate"
+                        data-i18n="Disabled Menu">Cancelled Orders</span></a>
+            </li>
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                        data-feather="file-text"></i><span class="menu-title text-truncate"
+                        data-i18n="Invoice">Chat</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{ url('admin/conversations') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">All
+                                Chats</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center"
+                    href="{{ url('admin/filter-order-details') }}"><i data-feather="save"></i><span
+                        class="menu-title text-truncate" data-i18n="Back Up Website">Filter Orders</span></a>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                        data-feather="shield"></i><span class="menu-title text-truncate"
+                        data-i18n="Roles &amp; Permission">Settings</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Roles </span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Permission">Audit Logs</span></a>
+                    </li>
+                </ul>
+            </li>
+            @role('admin')
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                            data-feather="shopping-cart"></i><span class="menu-title text-truncate"
+                            data-i18n="eCommerce">Schools</span></a>
+                    <ul class="menu-content">
+                        @permission('manage-schools')
+                            <li><a class="d-flex align-items-center" href="{{ route('admin.addschool') }}"><i
+                                        data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All
+                                        Schools</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="{{ route('admin.manageschools') }}"><i
+                                        data-feather="circle"></i><span class="menu-item text-truncate"
+                                        data-i18n="Details">Manage Schools</span></a>
+                            </li>
+                        @endpermission
+                    </ul>
+                </li>
+            @endrole
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                        data-feather="user"></i><span class="menu-title text-truncate"
+                        data-i18n="User">Writers</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="app-user-list.html"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="List">List</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="View">View</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="#"><span
+                                        class="menu-item text-truncate" data-i18n="Account">Accounts</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="#"><span
+                                        class="menu-item text-truncate" data-i18n="Security">Payments</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="#"><span
+                                        class="menu-item text-truncate" data-i18n="Billing &amp; Plans">Billing
+                                        &amp; Plans</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                        data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Sample
+                        Questions</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{ url('admin/createblogquiz') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Account Settings">Upload New</span></a>
+
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/all-payments') }}"><i
+                        data-feather="square"></i><span class="menu-title text-truncate"
+                        data-i18n="Modal Examples">All Payments</span></a>
+            </li>
+            <li class=" navigation-header"><span data-i18n="User Interface">Shortcuts</span><i
+                    data-feather="more-horizontal"></i>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.accountsettings') }}"><i
+                        data-feather="type"></i><span class="menu-title text-truncate"
+                        data-i18n="Typography">Avatar</span></a>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.accountsettings') }}"><i
+                        data-feather="eye"></i><span class="menu-title text-truncate"
+                        data-i18n="Feather">Password</span></a>
+            </li>
+            {{-- @endrole --}}
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="maps-leaflet.html"><i
                         data-feather="map"></i><span class="menu-title text-truncate"
                         data-i18n="Leaflet Maps">Leaflet Maps</span></a>
