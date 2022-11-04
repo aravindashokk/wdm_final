@@ -31,7 +31,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin');
 Route::get('school/dashboard', [SchoolDashbordController::class, 'index'])->name('school');
-Route::get('business/dashboard', [BusinessDashboardController::class, 'index'])->name('business');
+Route::get('business/dashboard', [BusinessDashboardController::class, 'index'])->name('businessowner');
 Route::get('student/dashboard', [StudentDashboardController::class, 'index'])->name('student');
 Route::name('admin.')->prefix('admin')->group(function(){
     Route::get('create-business', [AdminDashboardController::class, 'createbusiness'])->name('addbusiness');
@@ -54,6 +54,9 @@ Route::name('admin.')->prefix('admin')->group(function(){
     Route::delete('delete-student/{slug}', [AdminDashboardController::class, 'deletestudent'])->name('deletestudent');
     Route::get('account-settings', [AdminDashboardController::class,'accountsettings'])->name('accountsettings');
 });
+Route::name('businessowner.')->prefix('businessowner')->group(function(){
 
+    Route::get('account-settings', [BusinessDashboardController::class,'addproduct'])->name('addproduct');
+});
 // ::
 //

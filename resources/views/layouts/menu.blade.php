@@ -101,20 +101,29 @@
 
                     </li>
                 @endpermission
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
-                            data-feather="shield"></i><span class="menu-title text-truncate" data-i18n="Roles">All
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                        href="{{ url('admin/roles/permissions') }}"><i data-feather="shield"></i><span
+                            class="menu-title text-truncate" data-i18n="Roles">All
                             Roles</span></a>
                 </li>
             @endrole
 
+            @role('businessowner')
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner') }}"><i
+                            data-feather="square"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">Dashboard</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/all-payments') }}"><i
+                            data-feather="square"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">My Products</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.addproduct') }}"><i
+                    data-feather="eye-off"></i><span class="menu-title text-truncate"
+                    data-i18n="Disabled Menu">Add Product</span></a>
+        </li>
+            @endrole
 
 
-
-
-            <li class="nav-item"><a class="d-flex align-items-center" href="{{ url('admin/cancelled-orders') }}"><i
-                        data-feather="eye-off"></i><span class="menu-title text-truncate"
-                        data-i18n="Disabled Menu">Cancelled Orders</span></a>
-            </li>
 
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
                         data-feather="file-text"></i><span class="menu-title text-truncate"
@@ -144,24 +153,7 @@
                     </li>
                 </ul>
             </li>
-            @role('admin')
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="shopping-cart"></i><span class="menu-title text-truncate"
-                            data-i18n="eCommerce">Schools</span></a>
-                    <ul class="menu-content">
-                        @permission('manage-schools')
-                            <li><a class="d-flex align-items-center" href="{{ route('admin.addschool') }}"><i
-                                        data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Shop">All
-                                        Schools</span></a>
-                            </li>
-                            <li><a class="d-flex align-items-center" href="{{ route('admin.manageschools') }}"><i
-                                        data-feather="circle"></i><span class="menu-item text-truncate"
-                                        data-i18n="Details">Manage Schools</span></a>
-                            </li>
-                        @endpermission
-                    </ul>
-                </li>
-            @endrole
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
                         data-feather="user"></i><span class="menu-title text-truncate"
                         data-i18n="User">Writers</span></a>
@@ -201,6 +193,7 @@
                 </ul>
             </li>
 
+
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/all-payments') }}"><i
                         data-feather="square"></i><span class="menu-title text-truncate"
                         data-i18n="Modal Examples">All Payments</span></a>
@@ -208,13 +201,13 @@
             <li class=" navigation-header"><span data-i18n="User Interface">Shortcuts</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.accountsettings') }}"><i
-                        data-feather="type"></i><span class="menu-title text-truncate"
-                        data-i18n="Typography">Avatar</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center"
+                    href="{{ route('admin.accountsettings') }}"><i data-feather="type"></i><span
+                        class="menu-title text-truncate" data-i18n="Typography">Avatar</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.accountsettings') }}"><i
-                        data-feather="eye"></i><span class="menu-title text-truncate"
-                        data-i18n="Feather">Password</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center"
+                    href="{{ route('admin.accountsettings') }}"><i data-feather="eye"></i><span
+                        class="menu-title text-truncate" data-i18n="Feather">Password</span></a>
             </li>
             {{-- @endrole --}}
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="maps-leaflet.html"><i
