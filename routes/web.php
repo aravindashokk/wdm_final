@@ -22,8 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/custom-logout', function () {
-
-    return view('welcome');
+    Auth::logout();
+    return redirect()->to('/');
 });
 
 Auth::routes();
@@ -33,5 +33,9 @@ Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name(
 Route::get('school/dashboard', [SchoolDashbordController::class, 'index'])->name('school');
 Route::get('business/dashboard', [BusinessDashboardController::class, 'index'])->name('business');
 Route::get('student/dashboard', [StudentDashboardController::class, 'index'])->name('student');
+Route::name('admin.')->prefix('admin')->group(function(){
+    Route::get('create-business', [AdminDashboardController::class, 'createbusiness'])->name('addbusiness');
+});
+
 // ::
 //

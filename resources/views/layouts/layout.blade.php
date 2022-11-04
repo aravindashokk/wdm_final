@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="description" content="">
     <meta name="keywords" content=" web app">
-    <meta name="author" content="WorldIn">
-    <title>Admin Dashboard - WordIn Writers</title>
+    <meta name="author" content="Student Business Program">
+    <title>@yield('title')</title>
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -99,7 +99,7 @@
                         <ul class="search-list search-list-main"></ul>
                     </div>
                 </li>
-                @php
+                {{-- @php
                     $notifications = App\Models\OrderNotification::where('receiver_id', Auth::user()->id)->get();
                     $takenotifications = App\Models\OrderNotification::where('receiver_id', Auth::user()->id)
                         ->whereNull('read_at')
@@ -116,21 +116,21 @@
                         ->orderBy('created_at', 'DESC')
                         ->take(4)
                         ->get();
-                @endphp
+                @endphp --}}
                 <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
                         data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
-                            class="badge rounded-pill bg-danger badge-up">{{ count($notifications) + count($suggestions) + count($complains) }}</span></a>
+                            class="badge rounded-pill bg-danger badge-up">2</span></a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header d-flex">
                                 <h4 class="notification-title mb-0 me-auto">Payment Notifications</h4>
 
-                                <div class="badge rounded-pill badge-light-primary">{{ count($notifications) }} New
+                                <div class="badge rounded-pill badge-light-primary">4 New
                                 </div>
                             </div>
                         </li>
                         <li class="scrollable-container media-list">
-                            @forelse ($takenotifications as $notification)
+                            {{-- @forelse ($takenotifications as $notification)
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
@@ -154,7 +154,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @empty
+                            @empty --}}
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
@@ -169,7 +169,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endforelse
+                            {{-- @endforelse --}}
                         </li>
                         <li class="scrollable-container media-list">
                             <div class="list-item d-flex align-items-center">
@@ -180,7 +180,7 @@
                                     <label class="form-check-label" for="systemNotification"></label>
                                 </div>
                             </div>
-                            @forelse ($suggestions as $suggestion)
+                            {{-- @forelse ($suggestions as $suggestion)
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endforelse
+                            @endforelse --}}
 
                         </li>
                         <li class="scrollable-container media-list">
@@ -225,7 +225,7 @@
                                     <label class="form-check-label" for="systemNotification"></label>
                                 </div>
                             </div>
-                            @forelse ($complains as $complain)
+                            {{-- @forelse ($complains as $complain)
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
@@ -258,7 +258,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            @endforelse
+                            @endforelse --}}
 
                         </li>
 
@@ -334,7 +334,7 @@
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
-                2022<a class="ms-25" href="#" target="_blank">EssayProwessWriters</a><span
+                2022<a class="ms-25" href="#" target="_blank">Student Business Program</a><span
                     class="d-none d-sm-inline-block">, All rights
                     Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i
                     data-feather="heart"></i></span></p>

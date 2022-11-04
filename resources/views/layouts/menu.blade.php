@@ -2,8 +2,7 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item me-auto"><a class="navbar-brand"
-                    href="{{ asset('') }}html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
+            <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('admin') }}"><span class="brand-logo">
                         <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                             <defs>
@@ -40,7 +39,7 @@
                                 </g>
                             </g>
                         </svg></span>
-                    <h2 class="brand-text">Administrator</h2>
+                    <h2 class="brand-text">Admin Account</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
                         class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i
@@ -51,21 +50,19 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            @role('superadministrator')
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('superadmin') }}"><i
+            @role('admin')
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i
                             data-feather="home"></i><span class="menu-title text-truncate"
                             data-i18n="Dashboards">Dashboard</span></a>
                     <ul class="menu-content">
 
-                        <li class="active"><a class="d-flex align-items-center" href="{{ route('superadmin') }}"><i
+                        <li class="active"><a class="d-flex align-items-center" href="{{ route('admin') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Admin Dashboard">Dashboard</span></a>
                         </li>
                     </ul>
                 </li>
-                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
-                        data-feather="more-horizontal"></i>
-                </li>
+
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/new-orders') }}"><i
                             data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">New Unpaid
                             Orders</span></a>
@@ -90,24 +87,22 @@
                             data-feather="eye-off"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">Cancelled Orders</span></a>
                 </li>
-                {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate"
-                            data-i18n="Invoice">Invoice</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="List">List</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Preview">Preview</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Edit">Edit</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Add">Add</span></a>
-                        </li>
-                    </ul>
-                </li> --}}
+                @role('admin')
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                                data-feather="file-text"></i><span class="menu-title text-truncate"
+                                data-i18n="Invoice">Businesses</span></a>
+                        <ul class="menu-content">
+                            @permission('manage-business')
+                                <li><a class="d-flex align-items-center" href="{{ route('admin.addbusiness') }}"><i data-feather="circle"></i><span
+                                            class="menu-item text-truncate" data-i18n="List">Add Business</span></a>
+                                </li>
+                                <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                            class="menu-item text-truncate" data-i18n="Preview">Manage Businesses</span></a>
+                                </li>
+                            @endpermission
+                        </ul>
+                    </li>
+                @endrole
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
                             data-feather="file-text"></i><span class="menu-title text-truncate"
                             data-i18n="Invoice">Chat</span></a>
@@ -119,22 +114,20 @@
 
                     </ul>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/filter-order-details') }}"><i
-                            data-feather="save"></i><span class="menu-title text-truncate"
-                            data-i18n="Back Up Website">Filter Orders</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                        href="{{ url('admin/filter-order-details') }}"><i data-feather="save"></i><span
+                            class="menu-title text-truncate" data-i18n="Back Up Website">Filter Orders</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
                             data-feather="shield"></i><span class="menu-title text-truncate"
                             data-i18n="Roles &amp; Permission">Settings</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center"
-                                href="{{ url('administrator/manage-user-roles-permissions') }}"><i
+                        <li><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">Roles </span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="#"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Permission">Audit Logs</span></a>
+                        <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                    class="menu-item text-truncate" data-i18n="Permission">Audit Logs</span></a>
                         </li>
                     </ul>
                 </li>
@@ -182,12 +175,13 @@
                         </li>
                     </ul>
                 </li>
-                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate"
-                            data-i18n="Pages">Sample Questions</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
+                            data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Pages">Sample
+                            Questions</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('admin.createblogquiz') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Account Settings">Upload New</span></a>
+                        <li><a class="d-flex align-items-center" href="{{ url('admin/createblogquiz') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Account Settings">Upload New</span></a>
 
                         </li>
 
