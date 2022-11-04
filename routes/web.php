@@ -35,6 +35,11 @@ Route::get('business/dashboard', [BusinessDashboardController::class, 'index'])-
 Route::get('student/dashboard', [StudentDashboardController::class, 'index'])->name('student');
 Route::name('admin.')->prefix('admin')->group(function(){
     Route::get('create-business', [AdminDashboardController::class, 'createbusiness'])->name('addbusiness');
+    Route::post('store-business', [AdminDashboardController::class, 'storebusiness']) ->name('storebusiness');
+    Route::get('all-business', [AdminDashboardController::class, 'allbusiness'])->name('managebusiness');
+    Route::get('edit-business/{slug}', [AdminDashboardController::class, 'editbusiness']) ->name('editbusiness');
+    Route::patch('update-business/{slug}', [AdminDashboardController::class, 'updatebusiness']) ->name('updatebusiness');
+    Route::delete('delete-business/{slug}', [AdminDashboardController::class, 'deletebusiness'])->name('deletebusiness');
 });
 
 // ::

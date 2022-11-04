@@ -96,7 +96,7 @@
                                 <li><a class="d-flex align-items-center" href="{{ route('admin.addbusiness') }}"><i data-feather="circle"></i><span
                                             class="menu-item text-truncate" data-i18n="List">Add Business</span></a>
                                 </li>
-                                <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                <li><a class="d-flex align-items-center" href="{{ route('admin.managebusiness') }}"><i data-feather="circle"></i><span
                                             class="menu-item text-truncate" data-i18n="Preview">Manage Businesses</span></a>
                                 </li>
                             @endpermission
