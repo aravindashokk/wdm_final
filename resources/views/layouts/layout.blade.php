@@ -61,27 +61,12 @@
                                 data-feather="menu"></i></a></li>
                 </ul>
                 <ul class="nav navbar-nav bookmark-icons">
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link"
-                            href="{{ url('admin/all-notifications') }}" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="All Notifications"><i class="ficon"
-                                data-feather="mail"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ url('admin/conversations') }}"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Chat"><i class="ficon"
-                                data-feather="message-square"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ url('admin/all-orders') }}"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Calendar"><i class="ficon"
-                                data-feather="calendar"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link"
-                            href="{{ url('admin/orders-in-progress') }}" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Todo"><i class="ficon"
-                                data-feather="check-square"></i></a></li>
-                </ul>
+
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
-                <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle"
-                        id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span
-                            class="selected-language">English</span></a>
+                <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag"
+                        href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                            class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
                     {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-flag"><a
                             class="dropdown-item" href="#" data-language="en"><i
                                 class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item"
@@ -96,8 +81,8 @@
                             data-feather="search"></i></a>
                     <div class="search-input">
                         <div class="search-input-icon"><i data-feather="search"></i></div>
-                        <input class="form-control input" type="text" placeholder="Explore WordIn Writers..."
-                            tabindex="-1" data-search="search">
+                        <input class="form-control input" type="text"
+                            placeholder="Explore Student Program Project..." tabindex="-1" data-search="search">
                         <div class="search-input-close"><i data-feather="x"></i></div>
                         <ul class="search-list search-list-main"></ul>
                     </div>
@@ -122,64 +107,65 @@
                 @endphp --}}
                 @role('student')
 
-                @php
-                    $products = App\Models\Cart::where('student_id', Auth::user()->id)->get();
-                @endphp
-                <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
-                        data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
-                            class="badge rounded-pill bg-danger badge-up">{{ count($products) }}</span></a>
-                    <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                        <li class="dropdown-menu-header">
-                            <div class="dropdown-header d-flex">
-                                <h4 class="notification-title mb-0 me-auto">My Shopping Cart</h4>
+                    @php
+                        $products = App\Models\Cart::where('student_id', Auth::user()->id)->get();
+                    @endphp
+                    <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
+                            data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
+                                class="badge rounded-pill bg-danger badge-up">{{ count($products) }}</span></a>
+                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
+                            <li class="dropdown-menu-header">
+                                <div class="dropdown-header d-flex">
+                                    <h4 class="notification-title mb-0 me-auto">My Shopping Cart</h4>
 
-                                <div class="badge rounded-pill badge-light-primary">{{ count($products)}} New
+                                    <div class="badge rounded-pill badge-light-primary">{{ count($products) }} New
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="scrollable-container media-list">
-                            @forelse ($products as $product)
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar">
-                                                @if ($product->cartproduct->image == null)
-                                                    <img src="https://ui-avatars.com/api/?name={{ $product->cartproduct->product_name }}"
-                                                        alt="avatar" width="32" height="32">
-                                                @else
-                                                    <img src="{{ asset('storage/products/' . $product->cartproduct->image) }}"
-                                                        alt="avatar" width="32" height="32">
-                                                @endif
+                            </li>
+                            <li class="scrollable-container media-list">
+                                @forelse ($products as $product)
+                                    <a class="d-flex" href="#">
+                                        <div class="list-item d-flex align-items-start">
+                                            <div class="me-1">
+                                                <div class="avatar">
+                                                    @if ($product->cartproduct->image == null)
+                                                        <img src="https://ui-avatars.com/api/?name={{ $product->cartproduct->product_name }}"
+                                                            alt="avatar" width="32" height="32">
+                                                    @else
+                                                        <img src="{{ asset('storage/products/' . $product->cartproduct->image) }}"
+                                                            alt="avatar" width="32" height="32">
+                                                    @endif
 
+                                                </div>
+                                            </div>
+                                            <div class="list-item-body flex-grow-1">
+                                                <p class="media-heading"><span
+                                                        class="fw-bolder">{{ $product->cartproduct->product_name }} has
+                                                        paid {{ $product->cartproduct->price }} USD
+                                                        🎉</span>!</p><small class="notification-text">
+                                                    {{ $product->quantity }}.</small>
                                             </div>
                                         </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <p class="media-heading"><span
-                                                    class="fw-bolder">{{ $product->cartproduct->product_name }} has
-                                                    paid {{ $product->cartproduct->price }} USD
-                                                    🎉</span>!</p><small class="notification-text">
-                                                {{ $product->quantity }}.</small>
+                                    </a>
+                                @empty
+                                    <a class="d-flex" href="#">
+                                        <div class="list-item d-flex align-items-start">
+                                            <div class="me-1">
+                                                <div class="avatar"><img
+                                                        src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
+                                                        alt="avatar" width="32" height="32"></div>
+                                            </div>
+                                            <div class="list-item-body flex-grow-1">
+                                                <p class="media-heading"><span class="fw-bolder">Your shopping cart is
+                                                        empty.
+                                                </p><small class="notification-text"> Please select items </small>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            @empty
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar"><img
-                                                    src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
-                                                    alt="avatar" width="32" height="32"></div>
-                                        </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <p class="media-heading"><span class="fw-bolder">Your shopping cart is empty.
-                                            </p><small class="notification-text"> Please select items </small>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforelse
-                        </li>
-                    </ul>
-                </li>
+                                    </a>
+                                @endforelse
+                            </li>
+                        </ul>
+                    </li>
                 @endrole
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                         id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -197,17 +183,15 @@
                             <span class="avatar-status-online"></span>
                         </span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a
-                            class="dropdown-item" href="{{ url('admin/account-settings') }}"><i class="me-50"
-                                data-feather="user"></i> Profile</a><a class="dropdown-item"
-                            href="{{ url('admin/complains') }}"><i class="me-50" data-feather="mail"></i>
-                            Complains</a><a class="dropdown-item" href="{{ url('admin/conversations') }}"><i
-                                class="me-50" data-feather="message-square"></i> Chats</a>
-                        <div class="dropdown-divider"></div><a class="dropdown-item"
-                            href="{{ url('admin/account-settings') }}"><i class="me-50"
-                                data-feather="settings"></i>
-                            Settings</a><a class="dropdown-item" href="{{ url('admin/suggestions') }}"><i
-                                class="me-50" data-feather="credit-card"></i> Suggestions</a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+                        <div class="dropdown-divider"></div>
+                        @role('schooladmin')
+                            <a class="dropdown-item" href="{{ route('schooladmin.profile') }}"><i class="me-50"
+                                    data-feather="settings"></i>
+                                Settings</a>
+                            <a class="dropdown-item" href="{{ url('admin/conversations') }}"><i class="me-50"
+                                    data-feather="message-square"></i> Chats</a>
+                        @endrole
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -290,7 +274,6 @@
                 ]
             });
         });
-
     </script>
     @yield('scripts')
     <script src="{{ asset('app-assets/js/toastr.min.js') }}"></script>
@@ -305,12 +288,12 @@
             }
         })
     </script>
-     <script>
+    <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     @livewireScripts
 </body>

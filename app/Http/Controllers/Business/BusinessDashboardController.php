@@ -13,7 +13,7 @@ class BusinessDashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth', 'role:businessowner']);
+        $this->middleware(['auth','verified', 'role:businessowner']);
     }
     public function checkauth()
     {

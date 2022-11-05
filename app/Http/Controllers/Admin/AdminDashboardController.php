@@ -14,7 +14,7 @@ class AdminDashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'role:admin']);
+        $this->middleware(['auth','verified', 'role:admin']);
     }
     public function checkauth()
     {

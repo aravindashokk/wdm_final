@@ -13,7 +13,7 @@ class StudentDashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'role:student']);
+        $this->middleware(['auth','verified', 'role:student']);
     }
     public function checkauth()
     {
@@ -66,7 +66,6 @@ class StudentDashboardController extends Controller
             } else {
 
                 Toastr::success('Unable to locate the your cart product', 'Alert', ["positionClass" => "toast-bottom-right"]);
-
                 return redirect()->back();
             }
         } else {
@@ -131,7 +130,6 @@ class StudentDashboardController extends Controller
             } else {
 
                 Toastr::success('Unable to locate the your cart product', 'Alert', ["positionClass" => "toast-bottom-right"]);
-
                 return redirect()->back();
             }
         } else {
