@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function index(){
+        return view('pages.homepage');
+    }
     public function createstudentaccount(Request $request)
     {
         $this->validate($request, [
