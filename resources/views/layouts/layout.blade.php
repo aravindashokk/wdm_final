@@ -67,13 +67,7 @@
                 <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag"
                         href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                             class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
-                    {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-flag"><a
-                            class="dropdown-item" href="#" data-language="en"><i
-                                class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item"
-                            href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a
-                            class="dropdown-item" href="#" data-language="de"><i
-                                class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#"
-                            data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div> --}}
+                  
                 </li>
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon"
                             data-feather="moon"></i></a></li>
@@ -86,25 +80,7 @@
                         <div class="search-input-close"><i data-feather="x"></i></div>
                         <ul class="search-list search-list-main"></ul>
                     </div>
-                </li>
-                {{-- @php
-                    $notifications = App\Models\OrderNotification::where('receiver_id', Auth::user()->id)->get();
-                    $takenotifications = App\Models\OrderNotification::where('receiver_id', Auth::user()->id)
-                        ->whereNull('read_at')
-                        ->orderBy('created_at', 'DESC')
-                        ->take(5)
-                        ->get();
-                    $takecomplains = App\Models\ClientComplain::whereNull('admin_response')
-                        ->orderBy('created_at', 'DESC')
-                        ->take(4)
-                        ->get();
-                    $complains = App\Models\ClientComplain::whereNull('admin_response')->get();
-                    $suggestions = App\Models\Suggestion::whereNull('admin_response')->get();
-                    $takesuggestions = App\Models\Suggestion::whereNull('admin_response')
-                        ->orderBy('created_at', 'DESC')
-                        ->take(4)
-                        ->get();
-                @endphp --}}
+             </li>
                 @role('student')
 
                     @php
@@ -249,13 +225,7 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
-                2022<a class="ms-25" href="#" target="_blank">Student Business Program</a><span
-                    class="d-none d-sm-inline-block">, All rights
-                    Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i
-                    data-feather="heart"></i></span></p>
-    </footer>
+
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
 

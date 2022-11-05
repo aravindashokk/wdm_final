@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.chats-layout')
 @section('title', 'Business Open Conversations')
 @section('content')
 

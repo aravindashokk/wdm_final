@@ -277,7 +277,8 @@ class BusinessDashboardController extends Controller
         if (auth()->user()->hasRole('businessowner')) {
 
 
-            $users = User::all();
+             
+            $users = User::whereRoleIs('schooladmin')->orWhereRoleIs('businessowner')->get();
             return view('business.open-conversations', compact('users'));
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
