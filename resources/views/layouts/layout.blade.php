@@ -41,6 +41,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    @livewireStyles
 
 </head>
 <!-- END: Head-->
@@ -119,29 +120,34 @@
                         ->take(4)
                         ->get();
                 @endphp --}}
+                @role('student')
+
+                @php
+                    $products = App\Models\Cart::where('student_id', Auth::user()->id)->get();
+                @endphp
                 <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
                         data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
-                            class="badge rounded-pill bg-danger badge-up">2</span></a>
+                            class="badge rounded-pill bg-danger badge-up">{{ count($products) }}</span></a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header d-flex">
-                                <h4 class="notification-title mb-0 me-auto">Payment Notifications</h4>
+                                <h4 class="notification-title mb-0 me-auto">My Shopping Cart</h4>
 
-                                <div class="badge rounded-pill badge-light-primary">4 New
+                                <div class="badge rounded-pill badge-light-primary">{{ count($products)}} New
                                 </div>
                             </div>
                         </li>
                         <li class="scrollable-container media-list">
-                            {{-- @forelse ($takenotifications as $notification)
+                            @forelse ($products as $product)
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
                                             <div class="avatar">
-                                                @if ($notification->notificationuser->avatar == null)
-                                                    <img src="https://ui-avatars.com/api/?name={{ $notification->notificationuser->name }}"
+                                                @if ($product->cartproduct->image == null)
+                                                    <img src="https://ui-avatars.com/api/?name={{ $product->cartproduct->product_name }}"
                                                         alt="avatar" width="32" height="32">
                                                 @else
-                                                    <img src="{{ asset('storage/avatars/' . $notification->notificationuser->avatar) }}"
+                                                    <img src="{{ asset('storage/products/' . $product->cartproduct->image) }}"
                                                         alt="avatar" width="32" height="32">
                                                 @endif
 
@@ -149,126 +155,32 @@
                                         </div>
                                         <div class="list-item-body flex-grow-1">
                                             <p class="media-heading"><span
-                                                    class="fw-bolder">{{ $notification->notificationuser->name }} has
-                                                    paid {{ $notification->notificationorder->order_cost }} USD
+                                                    class="fw-bolder">{{ $product->cartproduct->product_name }} has
+                                                    paid {{ $product->cartproduct->price }} USD
                                                     🎉</span>!</p><small class="notification-text">
-                                                {{ $notification->data }}.</small>
+                                                {{ $product->quantity }}.</small>
                                         </div>
                                     </div>
                                 </a>
-                            @empty --}}
+                            @empty
                                 <a class="d-flex" href="#">
                                     <div class="list-item d-flex align-items-start">
                                         <div class="me-1">
                                             <div class="avatar"><img
-                                                    src="{{ asset('app-assets/images/portrait/small/avatar-s-15.jpg') }}"
+                                                    src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                                                     alt="avatar" width="32" height="32"></div>
                                         </div>
                                         <div class="list-item-body flex-grow-1">
-                                            <p class="media-heading"><span class="fw-bolder">No New Payments received
-                                            </p><small class="notification-text"> But You may have orders to deliver
-                                                soon</small>
+                                            <p class="media-heading"><span class="fw-bolder">Your shopping cart is empty.
+                                            </p><small class="notification-text"> Please select items </small>
                                         </div>
                                     </div>
                                 </a>
-                            {{-- @endforelse --}}
+                            @endforelse
                         </li>
-                        <li class="scrollable-container media-list">
-                            <div class="list-item d-flex align-items-center">
-                                <h6 class="fw-bolder me-auto mb-0">Suggestions</h6>
-                                <div class="form-check form-check-primary form-switch">
-                                    <input class="form-check-input" id="systemNotification" type="checkbox"
-                                        checked="">
-                                    <label class="form-check-label" for="systemNotification"></label>
-                                </div>
-                            </div>
-                            {{-- @forelse ($suggestions as $suggestion)
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar bg-light-danger">
-                                                <div class="avatar-content"><i class="avatar-icon"
-                                                        data-feather="x"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <small class="notification-text">
-                                                {!! $suggestion->suggestion !!}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </a>
-                            @empty
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar bg-light-danger">
-                                                <div class="avatar-content"><i class="avatar-icon"
-                                                        data-feather="x"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <small class="notification-text">No suggestions unanswered suggestions as
-                                                at now.</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforelse --}}
-
-                        </li>
-                        <li class="scrollable-container media-list">
-                            <div class="list-item d-flex align-items-center">
-                                <h6 class="fw-bolder me-auto mb-0">Complains</h6>
-                                <div class="form-check form-check-primary form-switch">
-                                    <input class="form-check-input" id="systemNotification" type="checkbox"
-                                        checked="">
-                                    <label class="form-check-label" for="systemNotification"></label>
-                                </div>
-                            </div>
-                            {{-- @forelse ($complains as $complain)
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar bg-light-danger">
-                                                <div class="avatar-content"><i class="avatar-icon"
-                                                        data-feather="x"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <small class="notification-text">
-                                                {!! $complain->complain !!}
-                                            </small>
-                                        </div>
-                                    </div>
-                                </a>
-                            @empty
-                                <a class="d-flex" href="#">
-                                    <div class="list-item d-flex align-items-start">
-                                        <div class="me-1">
-                                            <div class="avatar bg-light-danger">
-                                                <div class="avatar-content"><i class="avatar-icon"
-                                                        data-feather="x"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-item-body flex-grow-1">
-                                            <small class="notification-text">No complains unanswered suggestions as at
-                                                now.</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforelse --}}
-
-                        </li>
-
-                        <li class="dropdown-menu-footer"><a class="btn btn-primary w-100"
-                                href="{{ url('admin/all-notifications') }}">Read all
-                                notifications</a></li>
                     </ul>
                 </li>
+                @endrole
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                         id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -400,6 +312,7 @@
                 console.error( error );
             } );
     </script>
+    @livewireScripts
 </body>
 <!-- END: Body-->
 

@@ -63,5 +63,14 @@ Route::name('businessowner.')->prefix('businessowner')->group(function(){
     Route::patch('update-product/{slug}', [BusinessDashboardController::class,'updateproduct'])->name('updateproduct');
     Route::delete('delete-product/{slug}', [BusinessDashboardController::class,'deleteproduct'])->name('deleteproduct');
 });
+Route::name('student.')->prefix('student')->group(function(){
+
+    Route::get('all-products', [StudentDashboardController::class,'allproducts'])->name('allproducts');
+    Route::post('store-to-cart', [StudentDashboardController::class,'addtocart'])->name('addtocart');
+    Route::get('my-cart', [StudentDashboardController::class,'mycart'])->name('mycart');
+    Route::post('remove-product', [StudentDashboardController::class,'removecart'])->name('removecart');
+    Route::get('product-details/{slug}', [StudentDashboardController::class,'productdetails'])->name('productdetails');
+    // Route::delete('delete-product/{slug}', [BusinessDashboardController::class,'deleteproduct'])->name('deleteproduct');
+});
 // ::
 //
