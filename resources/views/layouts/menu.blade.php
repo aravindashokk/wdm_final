@@ -135,6 +135,12 @@
                             class="menu-title text-truncate" data-i18n="Roles">All
                             Roles</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                    href="{{ route('admin.allchats') }}"><i data-feather="message-square"></i><span
+                        class="menu-title text-truncate" data-i18n="Roles">All
+                        Chats</span></a>
+            </li>
+
             @endrole
 
             @role('businessowner')
@@ -236,7 +242,7 @@
                     href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation"
                     target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate"
                         data-i18n="Documentation">Documentation</span></a>
-            </li>
+            </li><i data-feather='message-square'></i>
             <li class=" nav-item"><a class="d-flex align-items-center" href="https://pixinvent.ticksy.com/"
                     target="_blank"><i data-feather="life-buoy"></i><span class="menu-title text-truncate"
                         data-i18n="Raise Support">Raise Support</span></a>

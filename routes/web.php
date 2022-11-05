@@ -52,7 +52,10 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('edit-student/{slug}', [AdminDashboardController::class, 'editstudent'])->name('editstudent');
     Route::patch('update-student/{slug}', [AdminDashboardController::class, 'updatestudent'])->name('updatestudent');
     Route::delete('delete-student/{slug}', [AdminDashboardController::class, 'deletestudent'])->name('deletestudent');
-    Route::get('account-settings', [AdminDashboardController::class, 'accountsettings'])->name('accountsettings');
+    Route::get('account-settings', [AdminDashboardController::class, 'updateprofile'])->name('profile');
+    Route::post('update-profile', [AdminDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
+    Route::post('save-new-email', [AdminDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
+    Route::get('open-conversations', [AdminDashboardController::class, 'allchats'])->name('allchats');
 });
 Route::name('businessowner.')->prefix('businessowner')->group(function () {
 

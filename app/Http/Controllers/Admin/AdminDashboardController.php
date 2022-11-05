@@ -14,7 +14,7 @@ class AdminDashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','verified', 'role:admin']);
+        $this->middleware(['auth', 'verified', 'role:admin']);
     }
     public function checkauth()
     {
@@ -33,7 +33,8 @@ class AdminDashboardController extends Controller
             //     Toastr::error('No permission to access this page', 'Error', ["positionClass" => "toast-top-right"]);
             //     return redirect('client/no-access');
             // }
-            return view('admin.dashboard');
+            $businesses = Business::all();
+            return view('admin.dashboard', compact('businesses'));
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
 
@@ -614,6 +615,70 @@ class AdminDashboardController extends Controller
             }
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('login');
+        }
+    }
+
+    public function updateprofile()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('admin')) {
+            return view('admin.update-profile');
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-bottom-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function saveaccountpassword(Request $request)
+    {
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed|string|min:6|max:20',
+            'password_confirmation' => 'required',
+        ]);
+        $currentpassword = auth()->user()->password;
+        if (Hash::check($request->current_password, $currentpassword)) {
+            $user = User::find(auth()->user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Toastr::success('Password changed successfully', 'Success', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        } else {
+            Toastr::error('Current password is incorrect', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        }
+    }
+
+    public function saveaccountemail(Request $request)
+    {
+        $this->validate($request, [
+            'current_email' => 'required',
+            'email' => 'required|email|unique:users',
+            'confirm_email' => 'required|same:email',
+        ]);
+        $currentemail = auth()->user()->email;
+        if ($request->current_email == $currentemail) {
+            $user = User::find(auth()->user()->id);
+            $user->email = $request->email;
+            $user->save();
+            Toastr::success('Email changed successfully', 'Success', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        } else {
+            Toastr::error('Current email is incorrect', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        }
+    }
+    public function allchats(){
+        $this->checkauth();
+        if (auth()->user()->hasRole('admin')) {
+
+           
+            $users = User::all();
+            return view('admin.open-conversations', compact('users'));
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
             return redirect()->route('login');
         }
     }

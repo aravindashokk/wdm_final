@@ -192,6 +192,13 @@
                             <a class="dropdown-item" href="{{ url('admin/conversations') }}"><i class="me-50"
                                     data-feather="message-square"></i> Chats</a>
                         @endrole
+                        @role('admin')
+                            <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="me-50"
+                                    data-feather="settings"></i>
+                                Settings</a>
+                            <a class="dropdown-item" href="{{route('admin.allchats') }}"><i class="me-50"
+                                    data-feather="message-square"></i> Chats</a>
+                        @endrole
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
