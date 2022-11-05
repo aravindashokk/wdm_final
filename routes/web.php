@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Business\BusinessDashboardController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\School\SchoolDashbordController;
 use App\Http\Controllers\Student\StudentDashboardController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,11 @@ Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name(
 Route::get('school/dashboard', [SchoolDashbordController::class, 'index'])->name('schooladmin');
 Route::get('business/dashboard', [BusinessDashboardController::class, 'index'])->name('businessowner');
 Route::get('student/dashboard', [StudentDashboardController::class, 'index'])->name('student');
+Route::post('student-register', [PagesController::class, 'createstudentaccount'])->name('createstudentaccount');
+Route::get('school-register', [PagesController::class, 'createschoolaccount'])->name('schoolaccount');
+Route::get('business-register', [PagesController::class, 'createbusinessaccount'])->name('businessaccount');
+Route::post('store-school-account', [PagesController::class, 'storeschoolaccount'])->name('storeschoolaccount');
+Route::post('store-business-account', [PagesController::class, 'storebusinessaccount'])->name('storebusinessaccount');
 Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('create-business', [AdminDashboardController::class, 'createbusiness'])->name('addbusiness');
     Route::post('store-business', [AdminDashboardController::class, 'storebusiness'])->name('storebusiness');
