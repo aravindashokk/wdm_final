@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advert;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -279,6 +280,155 @@ class BusinessDashboardController extends Controller
             return view('business.open-conversations', compact('users'));
         } else {
             Toastr::error('No authorized to access business dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function adverts()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            return view('business.create-advert');
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function storeadvert(Request $request)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $this->validate($request, [
+                'advert_name' => 'required|string|min:5',
+                'advert_price' => 'required|numeric|min:30',
+                'advert_image' => 'required|image|mimes:jpeg,jpg,png|max:20048',
+                'advert_description' => 'required|string|min:5',
+            ]);
+
+            $timenow = time();
+            $checknum = "1234567898746351937463790";
+            $checkstring = "QWERTYUIOPLKJHGFDSAZXCVBNMmanskqpwolesurte";
+            $checktimelength = 6;
+            $checksnumlength = 6;
+            $checkstringlength = 20;
+            $randnum = substr(str_shuffle($timenow), 0, $checktimelength);
+            $randstring = substr(str_shuffle($checknum), 0, $checksnumlength);
+            $randcheckstring = substr(str_shuffle($checkstring), 0, $checkstringlength);
+            $totalstring = str_shuffle($randcheckstring . "" . $randnum . "" . $randstring);
+
+            $new = new Advert;
+            $new->seller_id = auth()->user()->id;
+            $new->product_name = $request->advert_name;
+            $new->price = $request->advert_price;
+            $fileNameWithExt = $request->advert_image->getClientOriginalName();
+            $fileName =  pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $Extension = $request->advert_image->getClientOriginalExtension();
+            $filenameToStore = $fileName . '-' . time() . '.' . $Extension;
+            $path = $request->advert_image->storeAs('products', $filenameToStore, 'public');
+            $new->image = $filenameToStore;
+            $new->slug = $totalstring;
+            $new->description = $request->advert_description;
+            $new->save();
+
+            Toastr::success('New Advert uploaded successfully', 'Alert', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('businessowner.myadverts');
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function updateadvert(Request $request, $slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $this->validate($request, [
+                'advert_name' => 'required|string|min:5',
+                'advert_price' => 'required|numeric|min:30',
+                'advert_image' => 'nullable|image|mimes:jpeg,jpg,png|max:20048',
+                'advert_description' => 'required|string|min:5',
+            ]);
+
+
+
+            $new = Advert::where('slug', $slug)->first();
+            $new->seller_id = auth()->user()->id;
+            $new->product_name = $request->advert_name;
+            $new->price = $request->advert_price;
+            if ($request->hasFile('advert_image')) {
+                Storage::delete('public/products/' . $new->image);
+                $fileNameWithExt = $request->advert_image->getClientOriginalName();
+                $fileName =  pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $Extension = $request->advert_image->getClientOriginalExtension();
+                $filenameToStore = $fileName . '-' . time() . '.' . $Extension;
+                $path = $request->advert_image->storeAs('products', $filenameToStore, 'public');
+                $new->image = $filenameToStore;
+            }
+
+            $new->description = $request->advert_description;
+            $new->save();
+            Toastr::success('New Advert uploaded successfully', 'Alert', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('businessowner.myadverts');
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function myadverts()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $adverts = Advert::where('seller_id', auth()->user()->id)->get();
+            return view('business.my-adverts', compact('adverts'));
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function alladverts()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $adverts = Advert::where('seller_id', '!=',  auth()->user()->id)->get();
+            return view('business.all-adverts', compact('adverts'));
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function advertdetails($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $advert = Advert::where('seller_id', auth()->user()->id)->where('slug', $slug)->first();
+            if ($advert) {
+                return view('business.advert-details', compact('advert'));
+            } else {
+                Toastr::error('Unable to retrieve Advert details', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function deleteadvert($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('businessowner')) {
+            $advert = Advert::where('seller_id', auth()->user()->id)->where('slug', $slug)->first();
+            if ($advert) {
+                Storage::delete('public/adverts/' . $advert->image);
+                $advert->delete();
+                Toastr::error('Advert deleted successfully', 'Error', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back();
+            } else {
+                Toastr::error('Unable to retrieve Advert details', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect()->route('login');
         }
     }

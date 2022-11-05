@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 Route::get('/custom-logout', function () {
     Auth::logout();
@@ -75,6 +76,13 @@ Route::name('businessowner.')->prefix('businessowner')->group(function () {
     Route::post('update-profile', [BusinessDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
     Route::post('save-new-email', [BusinessDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
     Route::get('open-conversations', [BusinessDashboardController::class, 'allchats'])->name('allchats');
+    Route::get('adverts', [StudentDashboardController::class, 'adverts'])->name('adverts');
+    Route::post('store-adverts', [BusinessDashboardController::class, 'storeadvert'])->name('storeadvert');
+    Route::get('my-adverts', [BusinessDashboardController::class, 'myadverts'])->name('myadverts');
+    Route::get('advert-details/{slug}', [BusinessDashboardController::class, 'advertdetails'])->name('advert');
+    Route::get('delete-advert-details/{slug}', [BusinessDashboardController::class, 'deleteadvert'])->name('removeadvert');
+    Route::get('all-adverts', [BusinessDashboardController::class, 'alladverts'])->name('alladverts');
+    Route::patch('all-adverts/{slug}', [BusinessDashboardController::class, 'updateadvert'])->name('updateadvert');
 });
 Route::name('student.')->prefix('student')->group(function () {
 
@@ -87,6 +95,13 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::post('update-profile', [StudentDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
     Route::post('save-new-email', [StudentDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
     Route::get('check-out', [StudentDashboardController::class, 'checkout'])->name('checkout');
+    Route::get('adverts', [StudentDashboardController::class, 'adverts'])->name('adverts');
+    Route::post('store-adverts', [StudentDashboardController::class, 'storeadvert'])->name('storeadvert');
+    Route::get('my-adverts', [StudentDashboardController::class, 'myadverts'])->name('myadverts');
+    Route::get('advert-details/{slug}', [StudentDashboardController::class, 'advertdetails'])->name('advert');
+    Route::get('delete-advert-details/{slug}', [StudentDashboardController::class, 'deleteadvert'])->name('removeadvert');
+    Route::get('all-adverts', [StudentDashboardController::class, 'alladverts'])->name('alladverts');
+
 });
 Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('schooladmin.deletestudent');
 Route::get('school/update-profile', [SchoolDashbordController::class, 'updateprofile'])->name('schooladmin.profile');

@@ -15,7 +15,7 @@
                             @role('schooladmin')
                                 <a class="navbar-brand" href="{{ route('schooladmin') }}">
                                 @endrole
-                                 
+
 
                                 @role('admin')
                                     <h2 class="brand-text">Admin Account</h2>
@@ -60,29 +60,28 @@
                                 School</span></a>
                     </li>
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.manageschools') }}"><i
-                                data-feather="message-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Chat">Manage
+                                data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Manage
                                 Schools</span></a>
                     </li>
                 @endpermission
                 @permission('manage-business')
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.addbusiness') }}"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Onboard Business</span></a>
+                                data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Onboard
+                                Business</span></a>
                     </li>
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.managebusiness') }}"><i
-                                data-feather="calendar"></i><span class="menu-title text-truncate"
-                                data-i18n="Calendar">Manage Businesses</span></a>
+                                data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Manage
+                                Businesses</span></a>
                     </li>
                 @endpermission
                 @permission('manage-students')
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.addstudent') }}"><i
-                                data-feather="check-square"></i><span class="menu-title text-truncate"
-                                data-i18n="Todo">Onboard Student</span></a>
+                                data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Onboard
+                                Student</span></a>
                     </li>
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.managestudents') }}"><i
-                                data-feather="calendar"></i><span class="menu-title text-truncate"
-                                data-i18n="Calendar">Manage Students</span></a>
+                                data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Manage
+                                Students</span></a>
                     </li>
                 @endpermission
                 @permission('manage-chats')
@@ -92,14 +91,12 @@
 
                     </li>
                 @endpermission
-                <li class=" nav-item"><a class="d-flex align-items-center"
-                        href="{{ url('admin/roles/permissions') }}"><i data-feather="shield"></i><span
-                            class="menu-title text-truncate" data-i18n="Roles">All
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/roles/permissions') }}"><i
+                            data-feather="shield"></i><span class="menu-title text-truncate" data-i18n="Roles">All
                             Roles</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.allchats') }}"><i
-                            data-feather="message-square"></i><span class="menu-title text-truncate"
-                            data-i18n="Roles">All
+                            data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Roles">All
                             Chats</span></a>
                 </li>
             @endrole
@@ -123,6 +120,18 @@
                             class="menu-title text-truncate" data-i18n="Roles">All
                             Chats</span></a>
                 </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.adverts') }}"><i
+                            data-feather="upload"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">Post Advert</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.myadverts') }}"><i
+                            data-feather="folder-minus"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">My Adverts</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.alladverts') }}"><i
+                            data-feather="align-justify"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">All Adverts</span></a>
+                </li>
             @endrole
             @role('student')
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('student') }}"><i
@@ -137,6 +146,18 @@
                             data-feather="shopping-cart"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">My Cart</span></a>
                 </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.adverts') }}"><i
+                            data-feather="upload"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">Post Advert</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.myadverts') }}"><i
+                            data-feather="folder-minus"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">My Adverts</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.alladverts') }}"><i
+                            data-feather="align-justify"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">All Adverts</span></a>
+                </li>
             @endrole
             @role('schooladmin')
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
@@ -147,7 +168,7 @@
                             data-feather="square"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">All Students</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.allchats') }}"><i
                             data-feather="circle"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">Chats</span></a>
                 </li>
