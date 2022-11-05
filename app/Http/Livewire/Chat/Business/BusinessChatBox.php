@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Chat\Admin;
+namespace App\Http\Livewire\Chat\Business;
 
 use App\Events\MessageRead;
 use App\Models\Conversation;
@@ -8,7 +8,7 @@ use App\Models\Message;
 use App\Models\User;
 use Livewire\Component;
 
-class AdminChatBox extends Component
+class BusinessChatBox extends Component
 {
     public $selectedconversation;
     public $receiverinstance;
@@ -64,7 +64,7 @@ class AdminChatBox extends Component
     {
 
 
-        $this->emitTo('chat.admin.admin-chat-list', 'refresh');
+        $this->emitTo('chat.business.business-chat-list', 'refresh');
         // code...
 
         $broadcastedMessage = Message::find($event['message']);
@@ -99,7 +99,7 @@ class AdminChatBox extends Component
     public function loadMoreMessages()
     {
         $this->paginatevar = $this->paginatevar + 10;
-        $this->emitTo('chat.admin.admin-create-chat', 'loadmessagereceiver', $this->selectedconversation, $this->receiverinstance);
+        $this->emitTo('chat.business.business-create-chat', 'loadmessagereceiver', $this->selectedconversation, $this->receiverinstance);
         $this->messagecount = Message::where('conversation_id', $this->selectedconversation->id)->count();
         $this->messages = Message::where('conversation_id', $this->selectedconversation->id)
             ->skip($this->messagecount - $this->paginatevar)
@@ -123,7 +123,7 @@ class AdminChatBox extends Component
         $this->selectedconversation = $conversation;
         $this->receiverinstance = $receiver;
 
-        $this->emitTo('chat.admin.admin-create-chat', 'loadmessagereceiver', $this->selectedconversation, $this->receiverinstance);
+        $this->emitTo('chat.business.business-create-chat', 'loadmessagereceiver', $this->selectedconversation, $this->receiverinstance);
         $this->messagecount = Message::where('conversation_id', $this->selectedconversation->id)->count();
         $this->messages = Message::where('conversation_id', $this->selectedconversation->id)
             ->skip($this->messagecount - $this->paginatevar)
@@ -143,6 +143,6 @@ class AdminChatBox extends Component
     }
     public function render()
     {
-        return view('livewire.chat.admin.admin-chat-box');
+        return view('livewire.chat.business.business-chat-box');
     }
 }

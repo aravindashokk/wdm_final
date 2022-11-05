@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Chat\Admin;
+namespace App\Http\Livewire\Chat\School;
 
 use App\Events\MessageSent;
 use App\Models\Conversation;
@@ -8,7 +8,7 @@ use App\Models\Message;
 use App\Models\User;
 use Livewire\Component;
 
-class AdminCreateChat extends Component
+class SchoolCreateChat extends Component
 {
     public $selectedconversation;
     public $receiverinstance;
@@ -23,7 +23,7 @@ class AdminCreateChat extends Component
 
     public function render()
     {
-        return view('livewire.chat.admin.admin-create-chat');
+        return view('livewire.chat.school.school-create-chat');
     }
     public function addconversation()
     {
@@ -42,8 +42,8 @@ class AdminCreateChat extends Component
             $this->selectedconversation->save();
             $this->compose_message = null;
 
-            $this->emitTo('chat.admin.admin-chat-box', 'pushmessages', $newmessage->id);
-            $this->emitTo('chat.admin.admin-chat-list', 'refresh');
+            $this->emitTo('chat.school.school-chat-box', 'pushmessages', $newmessage->id);
+            $this->emitTo('chat.school.school-chat-list', 'refresh');
             broadcast(new MessageSent(auth()->user(),  $this->selectedconversation, $newmessage,$this->receiverinstance));
         }
     }
