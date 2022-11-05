@@ -102,7 +102,7 @@ class AdminDashboardController extends Controller
                 $add->save();
 
                 $new->attachRole('businessowner');
-
+                $new->attachPermission('manage-products');
                 Toastr::success('New Business added to the system', 'Title', ["positionClass" => "toast-bottom-right"]);
                 return redirect()->route('admin.managebusiness');
             } else {
