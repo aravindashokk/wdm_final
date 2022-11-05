@@ -9,6 +9,7 @@
                 <div class="card">
                     <div class="card-header border-bottom">
                         <h4 class="card-title">My Shopping cart</h4>
+                        <a href="{{ route('student.checkout') }}" class="btn btn-sm btn-primary">Check out</a>
                     </div>
                     <!--Search Form -->
 

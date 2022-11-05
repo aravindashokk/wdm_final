@@ -153,6 +153,21 @@ class StudentDashboardController extends Controller
             return redirect()->route('login');
         }
     }
+    public function checkout(){
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            $totalcost = 0;
+            $products = Cart::where(['student_id' => auth()->user()->id, 'status' => 'pending'])->get();
+            foreach ($products as $product){
+                $totalcost += $product->cartproduct->price;
+            } 
+            return view('student.check-out', compact('products', 'totalcost'));
+        } else {
+            Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
     public function updateprofile()
     {
         $this->checkauth();

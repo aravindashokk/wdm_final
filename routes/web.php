@@ -86,7 +86,7 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::get('account-settings', [StudentDashboardController::class, 'updateprofile'])->name('profile');
     Route::post('update-profile', [StudentDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
     Route::post('save-new-email', [StudentDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
-    Route::get('open-conversations', [StudentDashboardController::class, 'allchats'])->name('allchats');
+    Route::get('check-out', [StudentDashboardController::class, 'checkout'])->name('checkout');
 });
 Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('schooladmin.deletestudent');
 Route::get('school/update-profile', [SchoolDashbordController::class, 'updateprofile'])->name('schooladmin.profile');
