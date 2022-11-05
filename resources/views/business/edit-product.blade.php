@@ -1,21 +1,22 @@
 @extends('layouts.layout')
-@section('title', 'Business | Create New School Student')
+@section('title', 'Business | Editing Product Details')
 @section('content')
     {{-- @livewire('admin.create-business') --}}
     <div class="card">
         <div class="card-header border-bottom">
-            <h4 class="card-title">Create New Product</h4>
+            <h4 class="card-title">Update  Product Details</h4>
         </div>
         <div class="card-body pt-1">
             <!-- form -->
-            <form class="validate-form" method="POST" action="{{ route('businessowner.storeproduct') }}" enctype="multipart/form-data">
+            <form class="validate-form" method="POST" action="{{ route('businessowner.updateproduct', $product->slug) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <div class="row">
                     <div class="col-12 col-sm-3 mb-1">
                         <label class="form-label" for="account-retype-new-password">Product Name</label>
                         <div class="input-group form-password-toggle input-group-merge">
                             <input type="text" class="form-control @error('product_name') is-invalid @enderror"
-                                value="{{ old('product_name') }}" id="account-retype-new-password" name="product_name"
+                                value="{{ $product->product_name }}" id="account-retype-new-password" name="product_name"
                                 placeholder="" />
                         </div>
                         @error('product_name')
@@ -26,7 +27,7 @@
                         <label class="form-label" for="account-retype-new-password">Product Price</label>
                         <div class="input-group form-password-toggle input-group-merge">
                             <input type="number" class="form-control @error('product_price') is-invalid @enderror"
-                                value="{{ old('product_price') }}" id="account-retype-new-password" name="product_price"
+                                value="{{$product->price }}" id="account-retype-new-password" name="product_price"
                                 placeholder="" />
                         </div>
                         @error('product_price')
@@ -37,7 +38,7 @@
                         <label class="form-label" for="account-retype-new-password">Stock Available</label>
                         <div class="input-group form-password-toggle input-group-merge">
                             <input type="number" class="form-control @error('stock_available') is-invalid @enderror"
-                                value="{{ old('stock_available') }}" id="account-retype-new-password" name="stock_available"
+                                value="{{ $product->quantity }}" id="account-retype-new-password" name="stock_available"
                                 placeholder="" />
                         </div>
                         @error('stock_available')
@@ -45,7 +46,7 @@
                         @enderror
                     </div>
                     <div class="col-12 col-sm-3 mb-1">
-                        <label class="form-label" for="account-retype-new-password">Product Image</label>
+                        <label class="form-label" for="account-retype-new-password">Product Image <small class="text-success">optional</small></label>
                         <div class="input-group form-password-toggle input-group-merge">
                             <input type="file" class="form-control @error('product_image') is-invalid @enderror"
                                 value="{{ old('product_image') }}" id="account-retype-new-password" name="product_image"
@@ -58,7 +59,7 @@
 
                     <div class="col-12 col-sm-12 mb-1">
                         <label class="form-label" for="account-old-password">Product Description</label>
-                            <textarea name="product_description" id="editor" cols="30" rows="5" class="form-control">{{ old('product_description') }}</textarea>
+                            <textarea name="product_description" id="editor" cols="30" rows="5" class="form-control">{{ $product->description }}</textarea>
                         @error('product_description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -66,7 +67,7 @@
 
 
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary me-1 mt-1">Upload Product</button>
+                        <button type="submit" class="btn btn-warning me-1 mt-1">Update Product</button>
                         <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
                     </div>
                 </div>
@@ -75,10 +76,4 @@
         </div>
     </div>
 @endsection
-@section('scripts')
-    @parent
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize"
-        async defer></script>
-    <script src="{{ asset('app-assets/js/mapInput.js') }}"></script>
-@stop
+

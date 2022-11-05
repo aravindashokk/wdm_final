@@ -56,7 +56,12 @@ Route::name('admin.')->prefix('admin')->group(function(){
 });
 Route::name('businessowner.')->prefix('businessowner')->group(function(){
 
-    Route::get('account-settings', [BusinessDashboardController::class,'addproduct'])->name('addproduct');
+    Route::get('upload-product', [BusinessDashboardController::class,'addproduct'])->name('addproduct');
+    Route::post('store-product', [BusinessDashboardController::class,'storeproduct'])->name('storeproduct');
+    Route::get('my-products', [BusinessDashboardController::class,'myproducts'])->name('myproducts');
+    Route::get('edit-product/{slug}', [BusinessDashboardController::class,'editproduct'])->name('editproduct');
+    Route::patch('update-product/{slug}', [BusinessDashboardController::class,'updateproduct'])->name('updateproduct');
+    Route::delete('delete-product/{slug}', [BusinessDashboardController::class,'deleteproduct'])->name('deleteproduct');
 });
 // ::
 //
