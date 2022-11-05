@@ -135,12 +135,11 @@
                             class="menu-title text-truncate" data-i18n="Roles">All
                             Roles</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center"
-                    href="{{ route('admin.allchats') }}"><i data-feather="message-square"></i><span
-                        class="menu-title text-truncate" data-i18n="Roles">All
-                        Chats</span></a>
-            </li>
-
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.allchats') }}"><i
+                            data-feather="message-square"></i><span class="menu-title text-truncate"
+                            data-i18n="Roles">All
+                            Chats</span></a>
+                </li>
             @endrole
 
             @role('businessowner')
@@ -156,10 +155,11 @@
                         href="{{ route('businessowner.addproduct') }}"><i data-feather="eye-off"></i><span
                             class="menu-title text-truncate" data-i18n="Disabled Menu">Add Product</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/orders') }}"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Kanban">All
-                            Chats</span></a>
 
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                        href="{{ route('businessowner.allchats') }}"><i data-feather="message-square"></i><span
+                            class="menu-title text-truncate" data-i18n="Roles">All
+                            Chats</span></a>
                 </li>
             @endrole
             @role('student')
@@ -168,17 +168,12 @@
                             data-i18n="Modal Examples">Dashboard</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('student.allproducts') }}"><i
-                            data-feather="square"></i><span class="menu-title text-truncate"
-                            data-i18n="Modal Examples">All Products</span></a>
+                            data-feather="list"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">All
+                            Products</span></a>
                 </li>
                 <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.mycart') }}"><i
-                            data-feather="eye-off"></i><span class="menu-title text-truncate"
+                            data-feather="shopping-cart"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">My Cart</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ url('admin/orders') }}"><i
-                            data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Kanban">All
-                            Chats</span></a>
-
                 </li>
             @endrole
             @role('schooladmin')
@@ -191,9 +186,9 @@
                             data-i18n="Modal Examples">All Students</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
-                    data-feather="circle"></i><span class="menu-title text-truncate"
-                    data-i18n="Modal Examples">Chats</span></a>
-        </li>
+                            data-feather="circle"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">Chats</span></a>
+                </li>
             @endrole
 
 

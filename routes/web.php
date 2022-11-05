@@ -65,6 +65,10 @@ Route::name('businessowner.')->prefix('businessowner')->group(function () {
     Route::get('edit-product/{slug}', [BusinessDashboardController::class, 'editproduct'])->name('editproduct');
     Route::patch('update-product/{slug}', [BusinessDashboardController::class, 'updateproduct'])->name('updateproduct');
     Route::delete('delete-product/{slug}', [BusinessDashboardController::class, 'deleteproduct'])->name('deleteproduct');
+    Route::get('account-settings', [BusinessDashboardController::class, 'updateprofile'])->name('profile');
+    Route::post('update-profile', [BusinessDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
+    Route::post('save-new-email', [BusinessDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
+    Route::get('open-conversations', [BusinessDashboardController::class, 'allchats'])->name('allchats');
 });
 Route::name('student.')->prefix('student')->group(function () {
 
@@ -73,11 +77,15 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::get('my-cart', [StudentDashboardController::class, 'mycart'])->name('mycart');
     Route::post('remove-product', [StudentDashboardController::class, 'removecart'])->name('removecart');
     Route::get('product-details/{slug}', [StudentDashboardController::class, 'productdetails'])->name('productdetails');
-    // Route::delete('delete-product/{slug}', [BusinessDashboardController::class,'deleteproduct'])->name('deleteproduct');
+    Route::get('account-settings', [StudentDashboardController::class, 'updateprofile'])->name('profile');
+    Route::post('update-profile', [StudentDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
+    Route::post('save-new-email', [StudentDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
+    Route::get('open-conversations', [StudentDashboardController::class, 'allchats'])->name('allchats');
 });
 Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('schooladmin.deletestudent');
 Route::get('school/update-profile', [SchoolDashbordController::class, 'updateprofile'])->name('schooladmin.profile');
 Route::post('school/update-profile', [SchoolDashbordController::class, 'saveaccountpassword'])->name('schooladmin.updatepassword');
 Route::post('school/save-new-email', [SchoolDashbordController::class, 'saveaccountemail'])->name('schooladmin.saveaccountemail');
+Route::get('school/open-conversations', [SchoolDashbordController::class, 'allchats'])->name('schooladmin.allchats');
 // ::
 //

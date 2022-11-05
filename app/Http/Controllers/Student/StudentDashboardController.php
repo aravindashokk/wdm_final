@@ -5,15 +5,17 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Hash;
 
 class StudentDashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','verified', 'role:student']);
+        $this->middleware(['auth', 'verified', 'role:student']);
     }
     public function checkauth()
     {
@@ -138,17 +140,67 @@ class StudentDashboardController extends Controller
             return redirect()->route('login');
         }
     }
-    public function mycart(){
+    public function mycart()
+    {
         $this->checkauth();
         if (auth()->user()->hasRole('student')) {
 
-            $products = Cart::where(['student_id' => auth()->user()->id,'status' => 'pending'])->get();
-                return view('student.my-cart', compact('products'));
-
+            $products = Cart::where(['student_id' => auth()->user()->id, 'status' => 'pending'])->get();
+            return view('student.my-cart', compact('products'));
         } else {
             Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
 
             return redirect()->route('login');
+        }
+    }
+    public function updateprofile()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            return view('student.update-profile');
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-bottom-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function saveaccountpassword(Request $request)
+    {
+        $this->validate($request, [
+            'current_password' => 'required',
+            'password' => 'required|confirmed|string|min:6|max:20',
+            'password_confirmation' => 'required',
+        ]);
+        $currentpassword = auth()->user()->password;
+        if (Hash::check($request->current_password, $currentpassword)) {
+            $user = User::find(auth()->user()->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Toastr::success('Password changed successfully', 'Success', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        } else {
+            Toastr::error('Current password is incorrect', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        }
+    }
+
+    public function saveaccountemail(Request $request)
+    {
+        $this->validate($request, [
+            'current_email' => 'required',
+            'email' => 'required|email|unique:users',
+            'confirm_email' => 'required|same:email',
+        ]);
+        $currentemail = auth()->user()->email;
+        if ($request->current_email == $currentemail) {
+            $user = User::find(auth()->user()->id);
+            $user->email = $request->email;
+            $user->save();
+            Toastr::success('Email changed successfully', 'Success', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        } else {
+            Toastr::error('Current email is incorrect', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
         }
     }
 }

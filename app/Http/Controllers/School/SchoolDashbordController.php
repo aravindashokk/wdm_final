@@ -110,5 +110,19 @@ class SchoolDashbordController extends Controller
             return redirect()->back();
         }
     }
+    public function allchats()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+
+
+            $users = User::all();
+            return view('school.open-conversations', compact('users'));
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
 
 }

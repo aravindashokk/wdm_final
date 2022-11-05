@@ -189,16 +189,28 @@
                             <a class="dropdown-item" href="{{ route('schooladmin.profile') }}"><i class="me-50"
                                     data-feather="settings"></i>
                                 Settings</a>
-                            <a class="dropdown-item" href="{{ url('admin/conversations') }}"><i class="me-50"
+                            <a class="dropdown-item" href="{{ route('schooladmin.allchats') }}"><i class="me-50"
                                     data-feather="message-square"></i> Chats</a>
                         @endrole
                         @role('admin')
                             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="me-50"
                                     data-feather="settings"></i>
                                 Settings</a>
-                            <a class="dropdown-item" href="{{route('admin.allchats') }}"><i class="me-50"
+                            <a class="dropdown-item" href="{{ route('admin.allchats') }}"><i class="me-50"
                                     data-feather="message-square"></i> Chats</a>
                         @endrole
+                        @role('businessowner')
+                            <a class="dropdown-item" href="{{ route('businessowner.profile') }}"><i class="me-50"
+                                    data-feather="settings"></i>
+                                Settings</a>
+                            <a class="dropdown-item" href="{{ route('businessowner.allchats') }}"><i class="me-50"
+                                    data-feather="message-square"></i> Chats</a>
+                        @endrole
+                        @role('student')
+                        <a class="dropdown-item" href="{{ route('student.profile') }}"><i class="me-50"
+                                data-feather="settings"></i>
+                            Settings</a>
+                    @endrole
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
