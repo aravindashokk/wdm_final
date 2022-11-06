@@ -107,6 +107,7 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::get('enrolled-school-clubs', [StudentDashboardController::class, 'enrolledclubs'])->name('enrolledclubs');
     Route::get('school-posts', [StudentDashboardController::class, 'schoolposts'])->name('schoolposts');
     Route::get('my-order-history', [StudentDashboardController::class, 'orderhistory'])->name('orderhistory');
+    Route::get('chat-with-business-owners', [StudentDashboardController::class, 'allchats'])->name('allchats');
 });
 Route::name('schooladmin.')->prefix('school')->group(function () {
     Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('deletestudent');

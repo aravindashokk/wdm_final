@@ -439,4 +439,16 @@ class StudentDashboardController extends Controller
             return redirect()->route('login');
         }
     }
+    public function allchats()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            $users = User::whereRoleIs('businessowner')->get();
+            return view('student.chats-layout', compact('users'));
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
 }

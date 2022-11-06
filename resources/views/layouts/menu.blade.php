@@ -174,7 +174,7 @@
                             data-feather="grid"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">Order History</span></a>
                 </li>
-                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.alladverts') }}"><i
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.allchats') }}"><i
                             data-feather="instagram"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">All Chats</span></a>
                 </li>
