@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return view('welcome');
-    return redirect()->route('login');
+    // return redirect()->route('login');
 });
 Route::get('/custom-logout', function () {
     Auth::logout();
@@ -30,6 +30,7 @@ Route::get('/custom-logout', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('/', [PagesController::class, 'index']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin');

@@ -303,7 +303,7 @@ class AdminDashboardController extends Controller
                 $add->save();
 
                 $new->attachRole('schooladmin');
-
+                $new->attachPermissions(['manage-students', 'manage-posts', 'manage-clubs']);
                 Toastr::success('New school added to the system', 'Title', ["positionClass" => "toast-bottom-right"]);
                 return redirect()->route('admin.manageschools');
             } else {
