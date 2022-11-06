@@ -64,7 +64,7 @@
 
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
-                
+
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon"
                             data-feather="moon"></i></a></li>
                 <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon"
@@ -144,7 +144,7 @@
                         aria-expanded="false">
                         <div class="user-nav d-sm-flex d-none"><span
                                 class="user-name fw-bolder">{{ Auth::user()->name }}</span><span
-                                class="user-status">Admin</span></div><span class="avatar">
+                                class="user-status"></span></div><span class="avatar">
                             @if (Auth::user()->avatar == null)
                                 <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="avatar"
                                     width="40" height="40">

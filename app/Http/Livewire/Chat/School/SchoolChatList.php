@@ -49,7 +49,7 @@ class SchoolChatList extends Component
     public function render()
     {
 
-        $users  = User::all();
+        $users  =  User::whereRoleIs('admin')->orWhereRoleIs('businessowner')->get();
         return view('livewire.chat.school.school-chat-list', compact('users'));
     }
     public function checkconversation($receiverid)

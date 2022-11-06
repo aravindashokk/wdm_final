@@ -49,8 +49,8 @@ class BusinessChatList extends Component
     public function render()
     {
 
-        $users  = User::all();
-        return view('livewire.chat.business.admin-chat-list', compact('users'));
+        $users  =  User::whereRoleIs('schooladmin')->orWhereRoleIs('business')->get();
+        return view('livewire.chat.business.business-chat-list', compact('users'));
     }
     public function checkconversation($receiverid)
     {

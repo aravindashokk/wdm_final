@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advert;
 use App\Models\Business;
+use App\Models\Club;
+use App\Models\Post;
+use App\Models\Product;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
@@ -27,14 +31,17 @@ class AdminDashboardController extends Controller
         $this->checkauth();
         if (auth()->user()->hasRole('admin')) {
 
-            // if ($this->checkauth()->hasPermission('create-order')) {
-            //     return view('client.place-new-order');
-            // } else {
-            //     Toastr::error('No permission to access this page', 'Error', ["positionClass" => "toast-top-right"]);
-            //     return redirect('client/no-access');
-            // }
+            $schools = School::all();
+            $students = Student::all();
+            $clubs = Club::all();
+            $products = Product::all();
+            $adverts = Advert::all();
             $businesses = Business::all();
-            return view('admin.dashboard', compact('businesses'));
+            $posts = Post::all();
+            $users = User::all();
+
+
+            return view('admin.dashboard', compact('businesses', 'schools', 'adverts', 'products','students', 'clubs','users', 'posts'));
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
 
@@ -213,7 +220,7 @@ class AdminDashboardController extends Controller
             if ($this->checkauth()->hasPermission('manage-business')) {
                 $bsn = Business::where('slug', $slug)->first();
                 if ($bsn) {
-                    
+
                     $bsn->delete();
 
                     Toastr::error('Business profile  deleted successfully.', 'Error', ["positionClass" => "toast-top-right"]);
@@ -670,7 +677,8 @@ class AdminDashboardController extends Controller
             return redirect()->back();
         }
     }
-    public function allchats(){
+    public function allchats()
+    {
         $this->checkauth();
         if (auth()->user()->hasRole('admin')) {
 
