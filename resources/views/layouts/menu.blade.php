@@ -124,13 +124,13 @@
                             data-feather="upload"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">Post Advert</span></a>
                 </li>
-                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.myadverts') }}"><i
-                            data-feather="folder-minus"></i><span class="menu-title text-truncate"
-                            data-i18n="Disabled Menu">My Adverts</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center"
+                        href="{{ route('businessowner.myadverts') }}"><i data-feather="folder-minus"></i><span
+                            class="menu-title text-truncate" data-i18n="Disabled Menu">My Adverts</span></a>
                 </li>
-                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('businessowner.alladverts') }}"><i
-                            data-feather="align-justify"></i><span class="menu-title text-truncate"
-                            data-i18n="Disabled Menu">All Adverts</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center"
+                        href="{{ route('businessowner.alladverts') }}"><i data-feather="align-justify"></i><span
+                            class="menu-title text-truncate" data-i18n="Disabled Menu">All Adverts</span></a>
                 </li>
             @endrole
             @role('student')
@@ -161,7 +161,7 @@
             @endrole
             @role('schooladmin')
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
-                            data-feather="square"></i><span class="menu-title text-truncate"
+                            data-feather="home"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">Dashboard</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
@@ -171,6 +171,18 @@
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.allchats') }}"><i
                             data-feather="circle"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">Chats</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.addclub') }}"><i
+                            data-feather="film"></i><span class="menu-title text-truncate" data-i18n="Modal Examples">Add
+                            Club</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.myclubs') }}"><i
+                            data-feather="folder-plus"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">My Clubs</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.myclubs') }}"><i
+                            data-feather="folder-plus"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples"></span></a>
                 </li>
             @endrole
 

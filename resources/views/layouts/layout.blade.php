@@ -64,11 +64,7 @@
 
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
-                <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag"
-                        href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                            class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
-                  
-                </li>
+                
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon"
                             data-feather="moon"></i></a></li>
                 <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon"

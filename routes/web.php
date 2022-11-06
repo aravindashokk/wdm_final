@@ -101,12 +101,22 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::get('advert-details/{slug}', [StudentDashboardController::class, 'advertdetails'])->name('advert');
     Route::get('delete-advert-details/{slug}', [StudentDashboardController::class, 'deleteadvert'])->name('removeadvert');
     Route::get('all-adverts', [StudentDashboardController::class, 'alladverts'])->name('alladverts');
-
 });
-Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('schooladmin.deletestudent');
-Route::get('school/update-profile', [SchoolDashbordController::class, 'updateprofile'])->name('schooladmin.profile');
-Route::post('school/update-profile', [SchoolDashbordController::class, 'saveaccountpassword'])->name('schooladmin.updatepassword');
-Route::post('school/save-new-email', [SchoolDashbordController::class, 'saveaccountemail'])->name('schooladmin.saveaccountemail');
-Route::get('school/open-conversations', [SchoolDashbordController::class, 'allchats'])->name('schooladmin.allchats');
+Route::name('schooladmin.')->prefix('school')->group(function () {
+    Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('deletestudent');
+    Route::get('update-profile', [SchoolDashbordController::class, 'updateprofile'])->name('profile');
+    Route::post('update-profile', [SchoolDashbordController::class, 'saveaccountpassword'])->name('updatepassword');
+    Route::post('save-new-email', [SchoolDashbordController::class, 'saveaccountemail'])->name('saveaccountemail');
+    Route::get('open-conversations', [SchoolDashbordController::class, 'allchats'])->name('allchats');
+    Route::get('new-club', [SchoolDashbordController::class, 'addclub'])->name('addclub');
+    Route::post('store-club', [SchoolDashbordController::class, 'storeclub'])->name('storeclub');
+    Route::get('edit-club/{slug}', [SchoolDashbordController::class, 'editclub'])->name('editclub');
+    Route::get('all-clubs', [SchoolDashbordController::class, 'myclubs'])->name('myclubs');
+    Route::patch('update-club/{slug}', [SchoolDashbordController::class, 'updateclub'])->name('updateclub');
+    Route::delete('delete-club/{slug}', [SchoolDashbordController::class, 'deleteclub'])->name('deleteclub');
+    Route::delete('deregister-student/{slug}', [SchoolDashbordController::class, 'deregisterstudent'])->name('clubunsubscribe');
+    Route::get('view-subscribed-students/{slug}', [SchoolDashbordController::class, 'viewclubstudents'])->name('managemembers');
+});
+
 // ::
 //
