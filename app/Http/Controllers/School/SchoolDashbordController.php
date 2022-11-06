@@ -341,7 +341,7 @@ class SchoolDashbordController extends Controller
             return redirect()->route('login');
         }
     }
-    public function viewclubstudents($slug)
+    public function viewstudentsubscribers($slug)
     {
         $this->checkauth();
         if (auth()->user()->hasRole('schooladmin')) {

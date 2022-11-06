@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h4 class="card-title">Registered Schools</h4>
+                        <h4 class="card-title">Registered Clubs</h4>
                     </div>
                     <!--Search Form -->
 

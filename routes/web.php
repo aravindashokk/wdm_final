@@ -101,6 +101,12 @@ Route::name('student.')->prefix('student')->group(function () {
     Route::get('advert-details/{slug}', [StudentDashboardController::class, 'advertdetails'])->name('advert');
     Route::get('delete-advert-details/{slug}', [StudentDashboardController::class, 'deleteadvert'])->name('removeadvert');
     Route::get('all-adverts', [StudentDashboardController::class, 'alladverts'])->name('alladverts');
+    Route::get('enroll-club/{slug}', [StudentDashboardController::class, 'enrollclub'])->name('enrollclub');
+    Route::delete('exit-club/{slug}', [StudentDashboardController::class, 'exitclub'])->name('exitclub');
+    Route::get('view-my-schoolmates', [StudentDashboardController::class, 'otherstudents'])->name('otherstudents');
+    Route::get('enrolled-school-clubs', [StudentDashboardController::class, 'enrolledclubs'])->name('enrolledclubs');
+    Route::get('school-posts', [StudentDashboardController::class, 'schoolposts'])->name('schoolposts');
+    Route::get('my-order-history', [StudentDashboardController::class, 'orderhistory'])->name('orderhistory');
 });
 Route::name('schooladmin.')->prefix('school')->group(function () {
     Route::delete('delete-student/{slug}', [SchoolDashbordController::class, 'deletestudent'])->name('deletestudent');
@@ -114,7 +120,7 @@ Route::name('schooladmin.')->prefix('school')->group(function () {
     Route::get('all-clubs', [SchoolDashbordController::class, 'myclubs'])->name('myclubs');
     Route::patch('update-club/{slug}', [SchoolDashbordController::class, 'updateclub'])->name('updateclub');
     Route::delete('delete-club/{slug}', [SchoolDashbordController::class, 'deleteclub'])->name('deleteclub');
-    Route::delete('deregister-student/{slug}', [SchoolDashbordController::class, 'deregisterstudent'])->name('clubunsubscribe');
+    Route::get('students-joined-club/{slug}', [SchoolDashbordController::class, 'viewstudentsubscribers'])->name('managemembers');
     Route::delete('deregister-student/{slug}', [SchoolDashbordController::class, 'deregisterstudent'])->name('clubunsubscribe');
      Route::get('all-posts', [SchoolDashbordController::class, 'allposts'])->name('myposts');
      Route::get('create-post', [SchoolDashbordController::class, 'createpost'])->name('createpost');

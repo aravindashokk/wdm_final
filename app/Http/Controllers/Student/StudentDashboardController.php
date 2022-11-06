@@ -5,11 +5,17 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\Cart;
+use App\Models\Club;
+use App\Models\ClubMember;
+use App\Models\Post;
 use App\Models\Product;
+use App\Models\School;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,13 +35,13 @@ class StudentDashboardController extends Controller
         $this->checkauth();
         if (auth()->user()->hasRole('student')) {
 
-            // if ($this->checkauth()->hasPermission('create-order')) {
-            //     return view('client.place-new-order');
-            // } else {
-            //     Toastr::error('No permission to access this page', 'Error', ["positionClass" => "toast-top-right"]);
-            //     return redirect('client/no-access');
-            // }
-            return view('student.dashboard');
+            $myclubs = ClubMember::where('student_id', auth()->user()->id)->get();
+            $products = Product::all();
+            $adverts = Advert::where('seller_id', auth()->user()->id)->get();
+            $student = Student::where('student_id', auth()->user()->id)->first();
+            $school = School::where('id', $student->school_id)->first();
+            $clubs = Club::where('school_id', $student->school_id)->get();
+            return view('student.dashboard', compact('clubs', 'school', 'myclubs', 'products', 'adverts'));
         } else {
             Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
 
@@ -314,6 +320,47 @@ class StudentDashboardController extends Controller
             return redirect()->route('login');
         }
     }
+    public function enrollclub($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            $club = Club::where('slug', $slug)->first();
+            if ($club) {
+                $new = new ClubMember;
+                $new->club_id = $club->id;
+                $new->school_id = $club->school_id;
+                $new->student_id = auth()->user()->id;
+                $new->save();
+                Toastr::success('Successfully enrolled to this club', 'Welcome', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back();
+            } else {
+                Toastr::error('Unable to retrieve club details', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function exitclub($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            $club = ClubMember::where('id', $slug)->first();
+            if ($club) {
+                $club->delete();
+                Toastr::warning('Successfully deregistered from this club', 'Please Note', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back();
+            } else {
+                Toastr::error('Unable to retrieve club details', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+
     public function deleteadvert($slug)
     {
         $this->checkauth();
@@ -330,6 +377,65 @@ class StudentDashboardController extends Controller
             }
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->route('login');
+        }
+    }
+    public function otherstudents()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+
+            $student = Student::where('student_id', auth()->user()->id)->first();
+            $school = School::where('id', $student->school_id)->first();
+            $students = Student::where('school_id', $school->id)->get();
+            $clubs = Club::where('school_id', $student->school_id)->get();
+            return view('student.my-classmates', compact('students'));
+        } else {
+            Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function enrolledclubs()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+
+            $clubs = ClubMember::where('student_id', auth()->user()->id)->get();
+            return view('student.my-enrolled-clubs', compact('clubs'));
+        } else {
+            Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function schoolposts()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+
+            $student = Student::where('student_id', auth()->user()->id)->first();
+            $school = School::where('id', $student->school_id)->first();
+            $posts = Post::where('school_id', $student->school_id)->get();
+            return view('student.my-school-posts', compact('posts'));
+        } else {
+            Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function orderhistory()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('student')) {
+            $orders = Cart::where(['student_id' => auth()->user()->id, 'status' => 'pending'])->whereDate('created_at', '!=', Carbon::today())->get();
+            $totalcost = 0;
+            foreach ($orders as $product) {
+                $totalcost += $product->cartproduct->price;
+            }
+            return view('student.order-history', compact('orders', 'totalcost'));
+        } else {
+            Toastr::error('No authorized to access student dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
             return redirect()->route('login');
         }
     }

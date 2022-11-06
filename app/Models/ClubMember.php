@@ -11,4 +11,7 @@ class ClubMember extends Model
     public function clubmemberstudent(){
         return $this->belongsTo(User::class, 'student_id');
     }
+    public function clubmemberclub(){
+        return $this->belongsTo(Club::class, 'club_id');
+    }
 }

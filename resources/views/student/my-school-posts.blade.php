@@ -1,11 +1,7 @@
 @extends('layouts.layout')
-@section('title', 'School | All Our Posts')
+@section('title', 'Student | All Our Posts')
 @section('content')
-<div class="row">
-    <div class="col-12 py-2">
-        <a href="{{ route('schooladmin.createpost') }}" class="btn btn-primary">create New Post</a>
-    </div>
-</div>
+
     <div class="row">
         @foreach ($posts as $post)
             <div class="col-md-4 col-12">
@@ -15,7 +11,7 @@
                     </a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="{{ route('schooladmin.editpost', $post->slug) }}" class="blog-title-truncate text-body-heading">{{ $post->post_title }}</a>
+                            <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading">{{ $post->post_title }}</a>
                         </h4>
                         <div class="d-flex">
                             <div class="avatar me-50">
@@ -35,17 +31,7 @@
                             {!! $post->description !!}
                         </p>
                         <hr>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <form action="{{ route('schooladmin.deletepost', $post->slug) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')<button type="submit"
-                                    title="Delete" class="btn btn-danger btn-sm mx-1">
-                                    Delete
-                                </button>
-                            </form>
-                            <a href="{{ route('schooladmin.editpost', $post->slug) }}" class="fw-bold">Edit Post</a>
-                        </div>
+
                     </div>
                 </div>
             </div>

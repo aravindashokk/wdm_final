@@ -158,6 +158,26 @@
                             data-feather="align-justify"></i><span class="menu-title text-truncate"
                             data-i18n="Disabled Menu">All Adverts</span></a>
                 </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.otherstudents') }}"><i
+                            data-feather="users"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">Other Students</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.enrolledclubs') }}"><i
+                            data-feather="anchor"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">Enrolled Clubs</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.schoolposts') }}"><i
+                            data-feather="grid"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">School Posts</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.orderhistory') }}"><i
+                            data-feather="grid"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">Order History</span></a>
+                </li>
+                <li class="nav-item"><a class="d-flex align-items-center" href="{{ route('student.alladverts') }}"><i
+                            data-feather="instagram"></i><span class="menu-title text-truncate"
+                            data-i18n="Disabled Menu">All Chats</span></a>
+                </li>
             @endrole
             @role('schooladmin')
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin') }}"><i
@@ -184,13 +204,13 @@
                             data-feather="briefcase"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">Posts</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.allproducts') }}"><i
-                            data-feather="airplay"></i><span class="menu-title text-truncate"
-                            data-i18n="Modal Examples">All Products</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                        href="{{ route('schooladmin.allproducts') }}"><i data-feather="airplay"></i><span
+                            class="menu-title text-truncate" data-i18n="Modal Examples">All Products</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.businessaccounts') }}"><i
-                            data-feather="cpu"></i><span class="menu-title text-truncate"
-                            data-i18n="Modal Examples">All Bussinesses</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center"
+                        href="{{ route('schooladmin.businessaccounts') }}"><i data-feather="cpu"></i><span
+                            class="menu-title text-truncate" data-i18n="Modal Examples">All Bussinesses</span></a>
                 </li>
             @endrole
 
