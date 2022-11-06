@@ -180,9 +180,9 @@
                             data-feather="folder-plus"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">My Clubs</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.myclubs') }}"><i
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.myposts') }}"><i
                             data-feather="folder-plus"></i><span class="menu-title text-truncate"
-                            data-i18n="Modal Examples"></span></a>
+                            data-i18n="Modal Examples">Posts</span></a>
                 </li>
             @endrole
 

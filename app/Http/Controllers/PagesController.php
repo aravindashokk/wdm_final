@@ -103,7 +103,7 @@ class PagesController extends Controller
         $add->save();
 
         $new->attachRole('schooladmin');
-        $new->attachPermission('manage-students');
+        $new->attachPermissions(['manage-students', 'manage-posts', 'manage-clubs']);
 
         return redirect()->route('login')->with('accountsuccess', 'School account successfully created.');
     }
