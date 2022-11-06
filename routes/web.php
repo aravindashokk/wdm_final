@@ -122,6 +122,12 @@ Route::name('schooladmin.')->prefix('school')->group(function () {
      Route::get('edit-post/{slug}', [SchoolDashbordController::class, 'editpost'])->name('editpost');
      Route::patch('update-post/{slug}', [SchoolDashbordController::class, 'updatepost'])->name('updatepost');
      Route::delete('delete-post/{slug}', [SchoolDashbordController::class, 'deletepost'])->name('deletepost');
+     Route::delete('delete-product/{slug}', [SchoolDashbordController::class, 'deleteproduct'])->name('deleteproduct');
+     Route::get('view-product/{slug}', [SchoolDashbordController::class, 'viewproduct'])->name('viewproduct');
+     Route::get('all-products', [SchoolDashbordController::class, 'allproducts'])->name('allproducts');
+     Route::get('manage-business-owners', [SchoolDashbordController::class, 'allbusinesses'])->name('businessaccounts');
+     Route::delete('delete-business/{slug}', [SchoolDashbordController::class, 'deletebusiness'])->name('deletebusiness');
+     Route::get('view-business-products/{slug}', [SchoolDashbordController::class, 'bproducts'])->name('viewbproducts');
 });
 
 // ::

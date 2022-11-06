@@ -181,8 +181,16 @@
                             data-i18n="Modal Examples">My Clubs</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.myposts') }}"><i
-                            data-feather="folder-plus"></i><span class="menu-title text-truncate"
+                            data-feather="briefcase"></i><span class="menu-title text-truncate"
                             data-i18n="Modal Examples">Posts</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.allproducts') }}"><i
+                            data-feather="airplay"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">All Products</span></a>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('schooladmin.businessaccounts') }}"><i
+                            data-feather="cpu"></i><span class="menu-title text-truncate"
+                            data-i18n="Modal Examples">All Bussinesses</span></a>
                 </li>
             @endrole
 

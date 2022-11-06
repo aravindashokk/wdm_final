@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Business | All My Products ')
+@section('title', 'School | All Registered Business')
 @section('content')
 
     <!-- Advanced Search -->
@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h4 class="card-title">My products</h4>
+                        <h4 class="card-title">Manage Business Owners</h4>
                     </div>
                     <!--Search Form -->
 
@@ -19,42 +19,36 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Product Image</th>
-                                        <th>Product</th>
-                                        <th>Price </th>
-                                        <th>Stock Available</th>
-                                        <th>Description</th>
-                                        <th>Date Uploaded</th>
+                                        <th>Shop Name</th>
+                                        <th>Location</th>
+                                        <th>Owner </th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Status</th>
+                                        <th>Date Registered</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($products->count() > 0)
-                                        @foreach ($products as $key => $item)
+                                    @if ($businesses->count() > 0)
+                                        @foreach ($businesses as $key => $item)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
 
-                                                <td>
-                                                    <img src="{{ asset('storage/products/'.$item->image) }}" style="height:60px;width:100px;border-radius:10px;" alt="">
-                                                  </td>
-                                                <td>{{ $item->product_name }}</td>
-                                                <td>{{ $item->price}}</td>
-                                                <td>{{ $item->quantity }}</td>
-                                                <td>
-                                                    {{ str_limit(strip_tags($item->description), 150) }}
-                                                    @if (strlen(strip_tags($item->description)) > 150)
-                                                    ....
-                                                  @endif
-                                                   </td>
+                                                <td>{{ $item->business_name }} </td>
+                                                <td>{{ $item->location_address }}</td>
+                                                <td>{{ $item->businessowner->name }}</td>
+                                                <td>{{ $item->businessowner->email }}</td>
+                                                <td>{{ $item->businessowner->phone_number }}</td>
+                                                <td>{{ $item->status }}</td>
                                                 <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center col-actions">
-                                                        <a href="{{ route('businessowner.editproduct', $item->slug) }}"
+                                                        <a href="{{ route('schooladmin.viewbproducts', $item->slug) }}"
                                                             class="btn btn-primary btn-sm mr-1" title="Edit">
-                                                            Edit
+                                                            Products
                                                         </a>
-                                                        <form action="{{ route('businessowner.deleteproduct', $item->slug) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('schooladmin.deletebusiness', $item->slug) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')<button type="submit"
                                                                 onsubmit="confirm(\'Are you sure you want to delete this business?\')"

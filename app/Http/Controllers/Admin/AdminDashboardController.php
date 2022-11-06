@@ -213,6 +213,7 @@ class AdminDashboardController extends Controller
             if ($this->checkauth()->hasPermission('manage-business')) {
                 $bsn = Business::where('slug', $slug)->first();
                 if ($bsn) {
+                    
                     $bsn->delete();
 
                     Toastr::error('Business profile  deleted successfully.', 'Error', ["positionClass" => "toast-top-right"]);

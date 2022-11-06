@@ -4,6 +4,7 @@ namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
+use App\Models\Business;
 use App\Models\Club;
 use App\Models\ClubMember;
 use App\Models\Post;
@@ -365,7 +366,8 @@ class SchoolDashbordController extends Controller
             return redirect()->route('login');
         }
     }
-    public function allposts(){
+    public function allposts()
+    {
         $this->checkauth();
         if (auth()->user()->hasRole('schooladmin')) {
 
@@ -382,7 +384,8 @@ class SchoolDashbordController extends Controller
             return redirect()->route('login');
         }
     }
-    public function createpost(){
+    public function createpost()
+    {
         $this->checkauth();
         if (auth()->user()->hasRole('schooladmin')) {
 
@@ -528,6 +531,121 @@ class SchoolDashbordController extends Controller
                     $club->delete();
                     Toastr::success('Post deleted successfully', 'Alert', ["positionClass" => "toast-bottom-right"]);
                     return redirect()->route('schooladmin.myposts');
+                } else {
+                    Toastr::error('Unable to retrieve Post details', 'Error', ["positionClass" => "toast-top-right"]);
+                    return redirect()->back();
+                }
+            } else {
+                Toastr::error('No permission to access products page', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access school admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function deleteproduct($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+
+            if ($this->checkauth()->hasPermission('manage-posts')) {
+                $product = Product::where('slug', $slug)->first();
+                if ($product) {
+                    Storage::delete('public/products/' . $product->image);
+                    $product->delete();
+                    Toastr::success('Product deleted successfully', 'Alert', ["positionClass" => "toast-bottom-right"]);
+                    return redirect()->route('schooladmin.allproducts');
+                } else {
+                    Toastr::error('Unable to retrieve Post details', 'Error', ["positionClass" => "toast-top-right"]);
+                    return redirect()->back();
+                }
+            } else {
+                Toastr::error('No permission to access products page', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access school admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function viewproduct($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+
+            if ($this->checkauth()->hasPermission('manage-posts')) {
+                $product = Product::where('slug', $slug)->first();
+                if ($product) {
+
+                    return view('school.view-product-details', compact('product'));
+                } else {
+                    Toastr::error('Unable to retrieve Post details', 'Error', ["positionClass" => "toast-top-right"]);
+                    return redirect()->back();
+                }
+            } else {
+                Toastr::error('No permission to access products page', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access school admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function allproducts()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+            $products = Product::all();
+            return view('school.all-products', compact('products'));
+        } else {
+            Toastr::error('No authorized to access school  admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function bproducts($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+            $bsn = Business::where('slug', $slug)->first();
+            $products = Product::where('seller_id',$bsn->owner_id)->get();
+            return view('school.all-business-products', compact('products', 'bsn'));
+        } else {
+            Toastr::error('No authorized to access school  admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+
+    public function allbusinesses()
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+            $businesses = Business::all();
+            return view('school.all-business-accounts', compact('businesses'));
+        } else {
+            Toastr::error('No authorized to access school  admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+            return redirect()->route('login');
+        }
+    }
+    public function deletebusiness($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('schooladmin')) {
+
+            if ($this->checkauth()->hasPermission('manage-posts')) {
+                $product = Business::where('slug', $slug)->first();
+                if ($product) {
+                    $product->delete();
+                    Toastr::success('Product deleted successfully', 'Alert', ["positionClass" => "toast-bottom-right"]);
+                    return redirect()->route('schooladmin.businessaccounts');
                 } else {
                     Toastr::error('Unable to retrieve Post details', 'Error', ["positionClass" => "toast-top-right"]);
                     return redirect()->back();

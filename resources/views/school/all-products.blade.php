@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Business | All My Products ')
+@section('title', 'School | Manage Business Products ')
 @section('content')
 
     <!-- Advanced Search -->
@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h4 class="card-title">My products</h4>
+                        <h4 class="card-title">Uploaded Products</h4>
                     </div>
                     <!--Search Form -->
 
@@ -45,19 +45,21 @@
                                                     @if (strlen(strip_tags($item->description)) > 150)
                                                     ....
                                                   @endif
+                                                  <br>
+                                                  <small class="text-success">Seller - {{ $item->productseller->name }} ( {{ $item->productseller->phone_number }} )</small>
                                                    </td>
                                                 <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center col-actions">
-                                                        <a href="{{ route('businessowner.editproduct', $item->slug) }}"
+                                                        <a href="{{ route('schooladmin.viewproduct', $item->slug) }}"
                                                             class="btn btn-primary btn-sm mr-1" title="Edit">
-                                                            Edit
+                                                            View
                                                         </a>
-                                                        <form action="{{ route('businessowner.deleteproduct', $item->slug) }}"
+                                                        <form action="{{ route('schooladmin.deleteproduct', $item->slug) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')<button type="submit"
-                                                                onsubmit="confirm(\'Are you sure you want to delete this business?\')"
+
                                                                 title="Delete" class="btn btn-danger btn-sm mx-1">
                                                                 Delete
                                                             </button>
