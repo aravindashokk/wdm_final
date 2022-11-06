@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    public function contacts(){
+        return view('pages.contacts');
+    }
     public function index(){
         return view('pages.homepage');
     }

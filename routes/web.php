@@ -30,6 +30,7 @@ Route::get('/custom-logout', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('/contacts', [PagesController::class, 'contacts']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin');
 Route::get('school/dashboard', [SchoolDashbordController::class, 'index'])->name('schooladmin');
