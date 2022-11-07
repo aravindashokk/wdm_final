@@ -15,7 +15,7 @@
                         @csrf
 
                         <div class="row">
-                            <div class="col-12 col-sm-3 mb-1">
+                            <div class="col-12 col-sm-4 mb-1">
                                 <label class="form-label" for="account-retype-new-password">Full Names</label>
                                 <div class="input-group form-password-toggle input-group-merge">
                                     <input type="text" class="form-control @error('full_name') is-invalid @enderror" value="{{ old('full_name') }}"
@@ -25,7 +25,7 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-12 col-sm-3 mb-1">
+                            <div class="col-12 col-sm-4 mb-1">
                                 <label class="form-label" for="account-retype-new-password">Phone Number</label>
                                 <div class="input-group form-password-toggle input-group-merge">
                                     <input type="number"
@@ -36,7 +36,7 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-12 col-sm-3 mb-1">
+                            <div class="col-12 col-sm-4 mb-1">
                                 <label class="form-label" for="account-retype-new-password">Email Address</label>
                                 <div class="input-group form-password-toggle input-group-merge">
                                     <input type="text"
@@ -47,7 +47,7 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-12 col-sm-3 mb-1">
+                            <div class="col-12 col-sm-4 mb-1">
                                 <label class="form-label" for="account-retype-new-password">Shop Name</label>
                                 <div class="input-group form-password-toggle input-group-merge">
                                     <input type="text"
@@ -55,6 +55,28 @@
                                         id="account-retype-new-password" name="shop_name" placeholder="" />
                                 </div>
                                 @error('shop_name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-12 col-sm-4 mb-1">
+                                <label class="form-label" for="account-retype-new-password">Password</label>
+                                <div class="input-group form-password-toggle input-group-merge">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        value="{{ old('password') }}" id="account-retype-new-password" name="password"
+                                        placeholder="" />
+                                </div>
+                                @error('password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-12 col-sm-4 mb-1">
+                                <label class="form-label" for="account-retype-new-password">Password</label>
+                                <div class="input-group form-password-toggle input-group-merge">
+                                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                        value="{{ old('password_confirmation') }}" id="account-retype-new-password" name="password_confirmation"
+                                        placeholder="" />
+                                </div>
+                                @error('password_confirmation')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

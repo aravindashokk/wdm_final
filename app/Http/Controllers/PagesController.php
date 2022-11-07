@@ -76,6 +76,8 @@ class PagesController extends Controller
             'address_address' => 'required',
             'address_latitude' => 'required',
             'address_longitude' => 'required',
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required'
         ]);
         $timenow = time();
         $checknum = "1234567898746351937463790";
@@ -92,7 +94,7 @@ class PagesController extends Controller
         $new->name = $request->admin_full_name;
         $new->phone_number = $request->phone_number;
         $new->email = $request->email;
-        $new->password = bcrypt($request->phone_number);
+        $new->password = bcrypt($request->password);
         $new->save();
 
         $add = new School;
@@ -122,6 +124,8 @@ class PagesController extends Controller
             'address_address' => 'required',
             'address_latitude' => 'required',
             'address_longitude' => 'required',
+            'password' => 'required|string|min:5|confirmed',
+            'password_confirmation' => 'required'
         ]);
         $timenow = time();
         $checknum = "1234567898746351937463790";
@@ -138,7 +142,7 @@ class PagesController extends Controller
         $new->name = $request->full_name;
         $new->phone_number = $request->phone_number;
         $new->email = $request->email;
-        $new->password = bcrypt($request->phone_number);
+        $new->password = bcrypt($request->password);
         $new->save();
 
         $add = new Business;
