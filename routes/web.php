@@ -32,6 +32,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/contacts', [PagesController::class, 'contacts']);
+Route::post('upload-query', [PagesController::class, 'uploadquery']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin');
 Route::get('school/dashboard', [SchoolDashbordController::class, 'index'])->name('schooladmin');
@@ -65,6 +66,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::post('update-profile', [AdminDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
     Route::post('save-new-email', [AdminDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
     Route::get('open-conversations', [AdminDashboardController::class, 'allchats'])->name('allchats');
+    Route::delete('mark-query-resolved/{slug}', [AdminDashboardController::class, 'resolvequery'])->name('markresolved');
+    Route::get('all-complains', [AdminDashboardController::class, 'allcomplains'])->name('allcomplains');
 });
 Route::name('businessowner.')->prefix('businessowner')->group(function () {
 

@@ -259,6 +259,14 @@
                 ]
             });
         });
+        $(document).ready(function() {
+            $('#exampletwo').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf',
+                ]
+            });
+        });
     </script>
     @yield('scripts')
     <script src="{{ asset('app-assets/js/toastr.min.js') }}"></script>

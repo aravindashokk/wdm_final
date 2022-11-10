@@ -6,15 +6,49 @@ use App\Models\Business;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\UserQuery;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function contacts(){
+    public function contacts()
+    {
         return view('pages.contacts');
     }
-    public function index(){
+    public function index()
+    {
         return view('pages.homepage');
+    }
+    public function uploadquery(Request $request)
+    {
+        $this->validate($request, [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string',
+            'phone_number' => 'required|string',
+            'query' => 'required|string|max:300',
+            'emailaddress' => 'required|email',
+        ]);
+        $timenow = time();
+        $checknum = "1234567898746351937463790";
+        $checkstring = "QWERTYUIOPLKJHGFDSAZXCVBNMmanskqpwolesurte";
+        $checktimelength = 6;
+        $checksnumlength = 6;
+        $checkstringlength = 20;
+        $randnum = substr(str_shuffle($timenow), 0, $checktimelength);
+        $randstring = substr(str_shuffle($checknum), 0, $checksnumlength);
+        $randcheckstring = substr(str_shuffle($checkstring), 0, $checkstringlength);
+        $totalstring = str_shuffle($randcheckstring . "" . $randnum . "" . $randstring);
+
+        $new = new UserQuery;
+        $new->firstname = $request->get('firstname');
+        $new->lastname = $request->get('lastname');
+        $new->phone_number = $request->get('phone_number');
+        $new->email = $request->get('emailaddress');
+        $new->message = $request->get('query');
+        $new->status = "pending";
+        $new->slug = $totalstring;
+        $new->save();
+        return redirect()->to('/')->with('mesagesent', 'Message sent successfully');
     }
     public function createstudentaccount(Request $request)
     {
@@ -112,10 +146,12 @@ class PagesController extends Controller
 
         return redirect()->route('login')->with('accountsuccess', 'School account successfully created.');
     }
-    public function createbusinessaccount(){
+    public function createbusinessaccount()
+    {
         return view('auth.register-business');
     }
-    public function storebusinessaccount(Request $request){
+    public function storebusinessaccount(Request $request)
+    {
         $this->validate($request, [
             'full_name' => 'required|string|min:5',
             'phone_number' => 'required|digits:10|unique:users',

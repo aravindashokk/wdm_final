@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\School;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\UserQuery;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -39,9 +40,10 @@ class AdminDashboardController extends Controller
             $businesses = Business::all();
             $posts = Post::all();
             $users = User::all();
+            $queries = UserQuery::where('status', 'pending')->get();
 
 
-            return view('admin.dashboard', compact('businesses', 'schools', 'adverts', 'products','students', 'clubs','users', 'posts'));
+            return view('admin.dashboard', compact('businesses', 'schools', 'queries', 'adverts', 'products', 'students', 'clubs', 'users', 'posts'));
         } else {
             Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
 
@@ -334,7 +336,23 @@ class AdminDashboardController extends Controller
             return redirect()->route('login');
         }
     }
+public function allcomplains(){
+    $this->checkauth();
+    if (auth()->user()->hasRole('admin')) {
 
+        if ($this->checkauth()->hasPermission('manage-schools')) {
+            $queries = UserQuery::where('status','solved')->get();
+            return view('admin.all-queries', compact('queries'));
+        } else {
+            Toastr::error('No permission to access all schools', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect()->back();
+        }
+    } else {
+        Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-top-right"]);
+
+        return redirect()->route('login');
+    }
+}
     public function editschool(Request $request, $slug)
     {
         $this->checkauth();
@@ -626,7 +644,30 @@ class AdminDashboardController extends Controller
             return redirect()->route('login');
         }
     }
-
+    public function resolvequery($slug)
+    {
+        $this->checkauth();
+        if (auth()->user()->hasRole('admin')) {
+            if ($this->checkauth()->hasPermission('manage-students')) {
+                $bsn = UserQuery::where('slug', $slug)->first();
+                if ($bsn) {
+                    $bsn->status = "solved";
+                    $bsn->save();
+                    Toastr::success('Query marked as solved.', 'Success', ["positionClass" => "toast-bottom-right"]);
+                    return redirect()->back();
+                } else {
+                    Toastr::error('User message not found. Please refresh and try again.', 'Error', ["positionClass" => "toast-top-right"]);
+                    return redirect()->back();
+                }
+            } else {
+                Toastr::error('No permission to access all students', 'Error', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('No authorized to access admin dashboard.Log in to your account', 'Error', ["positionClass" => "toast-bottom-right"]);
+            return redirect()->route('login');
+        }
+    }
     public function updateprofile()
     {
         $this->checkauth();

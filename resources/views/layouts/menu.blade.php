@@ -99,6 +99,10 @@
                             data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Roles">All
                             Chats</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.allcomplains') }}"><i
+                    data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Roles">Solved
+                    Complains</span></a>
+        </li>
             @endrole
 
             @role('businessowner')

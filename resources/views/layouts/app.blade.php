@@ -48,6 +48,9 @@
                             <a href="{{ url('/#about') }}" class="nav-link text-uppercase font-weight-bold"> About</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-uppercase" href="https://blog.vxy3582.uta.cloud/">{{ __('Blog') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-uppercase" href="{{ url('/#services') }}">{{ __('Services') }}</a>
                         </li>
                         <li class="nav-item">
