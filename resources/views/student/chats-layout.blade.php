@@ -53,87 +53,26 @@
                 <ul class="nav navbar-nav d-xl-none">
                     <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon"
                                 data-feather="menu"></i></a></li>
+                                <li>jdnejde</li>
                 </ul>
-                <ul class="nav navbar-nav bookmark-icons">
+                
 
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
                
-                <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon"
-                            data-feather="moon"></i></a></li>
-                <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon"
-                            data-feather="search"></i></a>
-                    <div class="search-input">
-                        <div class="search-input-icon"><i data-feather="search"></i></div>
-                        <input class="form-control input" type="text"
-                            placeholder="Explore Student Program Project..." tabindex="-1" data-search="search">
-                        <div class="search-input-close"><i data-feather="x"></i></div>
-                        <ul class="search-list search-list-main"></ul>
-                    </div>
-                </li>
-
-                @role('student')
-
-                    @php
-                        $products = App\Models\Cart::where('student_id', Auth::user()->id)->get();
-                    @endphp
-                    <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
-                            data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
-                                class="badge rounded-pill bg-danger badge-up">{{ count($products) }}</span></a>
-                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                            <li class="dropdown-menu-header">
-                                <div class="dropdown-header d-flex">
-                                    <h4 class="notification-title mb-0 me-auto">My Shopping Cart</h4>
-
-                                    <div class="badge rounded-pill badge-light-primary">{{ count($products) }} New
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="scrollable-container media-list">
-                                @forelse ($products as $product)
-                                    <a class="d-flex" href="#">
-                                        <div class="list-item d-flex align-items-start">
-                                            <div class="me-1">
-                                                <div class="avatar">
-                                                    @if ($product->cartproduct->image == null)
-                                                        <img src="https://ui-avatars.com/api/?name={{ $product->cartproduct->product_name }}"
-                                                            alt="avatar" width="32" height="32">
-                                                    @else
-                                                        <img src="{{ asset('storage/products/' . $product->cartproduct->image) }}"
-                                                            alt="avatar" width="32" height="32">
-                                                    @endif
-
-                                                </div>
-                                            </div>
-                                            <div class="list-item-body flex-grow-1">
-                                                <p class="media-heading"><span
-                                                        class="fw-bolder">{{ $product->cartproduct->product_name }} has
-                                                        paid {{ $product->cartproduct->price }} USD
-                                                        🎉</span>!</p><small class="notification-text">
-                                                    {{ $product->quantity }}.</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @empty
-                                    <a class="d-flex" href="#">
-                                        <div class="list-item d-flex align-items-start">
-                                            <div class="me-1">
-                                                <div class="avatar"><img
-                                                        src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
-                                                        alt="avatar" width="32" height="32"></div>
-                                            </div>
-                                            <div class="list-item-body flex-grow-1">
-                                                <p class="media-heading"><span class="fw-bolder">Your shopping cart is
-                                                        empty.
-                                                </p><small class="notification-text"> Please select items </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforelse
-                            </li>
-                        </ul>
-                    </li>
-                @endrole
+                @role('admin')
+                <a href="{{ route('admin') }}" class="brand-text">Admin Account</a>
+            @endrole
+            @role('businessowner')
+                <a href="{{ route('businessowner') }}" class="brand-text">Business Account</a>
+            @endrole
+            @role('student')
+                <a href="{{ route('student') }}" class="brand-text">Student Account</a>
+            @endrole
+            @role('schooladmin')
+                <a href="{{ route('schooladmin') }}" class="brand-text">School Account</a>
+            @endrole
+                
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                         id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -192,7 +131,7 @@
             </ul>
         </div>
     </nav>
-    @include('layouts.menu')
+    {{-- @include('layouts.menu') --}}
 
     <!-- BEGIN: Content-->
     <div class="app-content content chat-application">

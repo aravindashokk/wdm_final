@@ -12,7 +12,7 @@
                             <div class="col-lg-3 col-xs-12 col-sm-12 col-md-3 py-1">
                                 <div class="item-img">
                                     <a href="app-ecommerce-details.html">
-                                        <img src="{{ asset('storage/products/'.$item->cartproduct->image) }}" alt="img-placeholder">
+                                        <img src="{{ asset('storage/products/'.$item->cartproduct->image) }}" alt="img-placeholder" style="height: 150px;width:100%;">
                                     </a>
                                 </div>
                             </div>
@@ -188,11 +188,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button type="button"
-                                    class="btn btn-primary btn-next delivery-address waves-effect waves-float waves-light">Save
-                                    And Deliver Here</button>
-                            </div>
+                             
                         </div>
                     </div>
                 </div>

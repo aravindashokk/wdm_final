@@ -1,312 +1,149 @@
-@extends('layouts.app')
-@section('title', 'Student Application')
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Nunito Sans', sans-serif;
-    }
+{{-- @extends('layouts.app')
+@section('title', 'Student Application') --}}
+<!DOCTYPE html>
+<html lang="en">
 
-    .nav-list {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        width: max-content;
-        margin-left: auto;
-        margin-right: 2rem;
-        font-weight: bold;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <title>Welcome</title>
 
-    .nav-list a {
-        text-decoration: none;
-    }
 
-    .nav-div {
-        display: flex;
-        flex-wrap: wrap;
-        background: #ffffff;
-        color: #c7c7c7ed;
-        margin: 0;
-        padding: 0;
-        position: sticky;
-        top: 15;
-        font-size: 18px;
-        font-weight: bold;
-        height: 35px;
-    }
+<link rel="stylesheet" href="main-css.css">
+</head>
 
-    .logo {
-        width: max-content;
-        margin: auto 2rem;
+<body>
 
-    }
+</body>
 
-    .nav-item {
-        padding: 0px 1.5rem;
+</html>
 
-    }
-
-    .heading {
-        text-align: center;
-        font-size: 35px;
-        font-weight: 600;
-        padding-top: 60px;
-        font-family: 'Satisfy', cursive;
-
-    }
-
-    .dummy-text {
-        padding: 0.5rem 1.5rem;
-        line-height: 150%;
-        font-size: 18px;
-        font-weight: 500;
-    }
-
-    .nav-list li:hover {
-        transform: scale(1.06);
-        color: rgb(59, 121, 163);
-    }
-
-    .hero {
-        height: 550px;
-        background-image: url("https://clustercomp.org/2021/images/unsplash_brooklyn-bridge_header.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .hero .overlay {
-        background-color: rgb(60, 95, 177);
-        position: absolute;
-        height: 100%;
-        with: 100%;
-        z-index: 1;
-        left: 0;
-        right: 0;
-        top: 0;
-        opacity: 0.5;
-    }
-
-    .hero .content {
-        color: #fff;
-        z-index: 2;
-        text-align: center;
-    }
-
-    .hero .content h1 {
-        font-size: 45px;
-        font-weight: 700;
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .hero .content p {
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .dummy-text p {
-        font-size: 20px;
-    }
-
-    .fb {
-        font-weight: bold;
-    }
-
-    .pt-8 {
-        padding-top: 5rem !important;
-    }
-
-    .flex {
-        display: flex !important;
-    }
-
-    .align-items-center {
-        align-items: center !important;
-    }
-
-    .shadow-2 {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, .03), 0 0 2px rgba(0, 0, 0, .06), 0 2px 6px rgba(0, 0, 0, .12) !important;
-    }
-
-    .p-4 {
-        padding: 1.5rem !important;
-    }
-
-    .mb-3 {
-        margin-bottom: 1rem !important;
-    }
-
-    .text-3xl {
-        font-size: 1.75rem !important;
-    }
-
-    .mb-2 {
-        margin-bottom: 0.5rem !important;
-    }
-
-    .font-medium {
-        font-weight: 500 !important;
-    }
-
-    .p-inputtext {
-        -webkit-appearance: none;
-        appearance: none;
-        background: #fff;
-        border: 1px solid #ced4da;
-        border-radius: 6px;
-        color: #495057;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-        font-size: 1rem;
-        padding: 0.75rem;
-        transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s;
-    }
-
-    .p-component,
-    .p-component * {
-        box-sizing: border-box;
-    }
-
-    .p-button {
-        background: #6366f1;
-        border: 1px solid #6366f1;
-        border-radius: 6px;
-        color: #fff;
-        font-size: 1rem;
-        padding: 0.75rem 1.25rem;
-        transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s;
-    }
-
-    .w-full {
-        width: 100% !important;
-    }
-</style>
 @section('content')
-    <div>
-        <div id="home">
-            <div>
-                <div class="hero">
-                    <div class="overlay"></div>
-                    <div class="content">
-                        <h1>Mercado.</h1>
-                        <p>Welcome</p>
-                    </div>
+    <div class="App">
+        <header class="d-flex justify-between nav-header">
+            <div class="header-title d-flex"><a class="logo font-oswald" href="/">Mercado Escolar</a></div>
+            <nav class="navbar">
+                <ul class="">
+                    <li class="nav-item active" id="homeTab"><a class="nav-Link" href="/">Home</a></li>
+                    <li class="nav-item" id="aboutTab"><a class="nav-Link" href="/about">About</a></li>
+                    <li class="nav-item" id="servicesTab"><a class="nav-Link" href="/services">Services</a></li>
+                    <li class="nav-item" id="contactTab"><a class="nav-Link" href="/contactUs">Contact</a></li>
+                    <li class="nav-item"><a class="nav-Link" href="http://pxs7540.uta.cloud/wp/">Blog</a></li>
+                    <li class="nav-item" id="authenticationTab"><a class="nav-Link"
+                            href="/login">Login/Register</a></li>
+                    <li class="nav-item d-none" id="logout-tab">
+                        <p>Logout</p><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAQAAABxec7jAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfkAxIRNThrZqWfAAAVm0lEQVR42u3d/+vvZ13H8ef7s3M8OyZrZ2eVQbazzTannRGHKbUvkVOJSQxW+6I/CM5qo7BlOvLLkqgJJfTL4hS0Fv2wIGRhvwQaDVJqIDp1OsU1VlasH0plgpFR6bsfTHtv+3x5X8/P68t1Xa/b7Q9Yer19ce+6HttZBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAzqrP/1rr43FJXByn4lR8X1wYJ+N747yIOBYv9JMz6we3cgb040hX2TgRV8eZuDKujEvjHD8ugIAcFI6T8bq4Pq6JK8L/fwcgIFul44fjpnh9vNJ9A0BAtk3H5XFb3BYv9xMCCMi26TgWN8Yd8RrPVQACsn08Loq74vY44YcDEJDt43FVvCNu7uvvGwMQkLHjcTreGzd7tAIQkJJ4XBHvi5vEA0BASuJxIt4ZvxIv8EMBCMj28diJO+PeOOlHAhCQkny8NO6PV/uBAGq1U2U8jqzfG5+TDwA3kLJ8nIoH41o/DYAbSFk+bo/PygeAG0hZPI7F2fg5PwqAgJTl4yXxZ/EqPwmAgJTl48fjg/6WXYB2VLKBrG+Jv5QPAAEpzcc98YE4148B0JLZn7DWq/ideLsfAkBASvNxX/ySnwFAQMrysRN/FG/2IwC0aMYNZL2Ks/IBICDlfjt+wQ8AICCl94974lcdP0C7Zvr3/K1viz/17xhkgR+c/9UjIIfMx3XxV3HM4SMgICBl+TgVj/qnzhEQaN3kG8j63HhIPgAEpNzvxVWOHUBASu8ft8dbHDpADyZ9kV1fEp+O8xw6C/7gbCC4gaTycST+RD4ABKTcu+PHHDhANzfqye4fl8dj/p0fLP6D84SFG0hxPnbiAfkAEJByd8a1Dhugqxv1JPePE/FkXOiwwRMWbiClfkM+ANxAyu8fV8Rn4qijBjcQ3EBKvU8+ANxAyu8fZ+JR/+YPcAPBDaTcb8oHgBtI+f3jqviEQwY3ENxAyt3tiAHcQMrvHxfFU3HEIYMbCG4gpe6SDwA3kPL7x/H4lzjhiMENBDeQUrfIB4CAZPy84wXo+EY91l94fXk84XjhOR+cJyzcQLbwRocLICAZtzhcAAEptj4dL3e4AAJS7iZHCyAgGTc4WoC+jfL3hKwviH+LcxwuPO+D83dh4QZygJ+UDwABybjewQIISMY1DhagdyO8yK5PxJcn+XetQ3sfnA0EN5B9XS0fAAKScZVjBRCQjNOOFUBABASAXQ0+6a2Px9f8UyCwxwdnRMcNZB+XygeAgGSccqgAApJxsUMFEJCMixwqgIBkfL9DBRCQjJMOFUBAMi50qAAC4gYCwGQB+S6HCiAgGS9wqAACIiAACAgAQxr+D1NcV/5f2B9mB1DpDQQAAQEAAQFAQAAQEAAEBAABAQABAUBAABAQAAQEAAEBAAEBQEAAEBAABAQAAQEAAQFAQAAQEAAEBAABcQQACAgAAgKAgAAgIAAgIAAICAACAoCAACAgACAgAAgIAAICgIAAICAAICAACAgAAgKAgAAgIAAgIAAICAACAoCAACAgACAgAAgIAAICgIAAICAAICAACAgAAgKAgAAgIAAgIAAICAACAoCAAICAACAgAAgIAAICgIAAgIAAICAACAgAAgKAgACAgAAgIAAICAACAoCAAICAACAgAAgIAAICgIAAS7T+g/VRp8C2VoP/D3Bd+X/hlR8d9vl+H45bV884CQREQKD8+30qblx9wVlwME9YwLO9NB5Zv9YxICBAuRPx4fUvOwYO4gkL2P37vT/euvpvZ4KACAiUf78GdQREQCD5/RrU2YcNBNibQR0BAZIM6uzJExZw8PdrUEdABASS369BHQEREEh+vwZ1nsMGAmzHoI6AAEkGdZ7FExZQ9v0a1BEQIPn9GtQRECD5/RrUCRsIkGFQR0CAJIM6nrCAQ3y/BnUBERAg+f0a1AVEQIDk92tQXywbCHA4BnUBAUgyqC+UJyxgmO/XoC4gAgICkmRQFxABAQFJMqgvig0EGI5BXUAAkgzqC+IJCxj++zWoC4iAgIAkGdQFREBAQJIM6t2zgQDjMKgLCECSQb1znrCAcb9fg7qACAgISJJBXUAEBAQkyaDeJRsIMD6DuoAAJBnUO+QJC5ju+zWoC4iAgIAkGdQFREBAQJIM6t2wgQDTMqgLCECSQb0TnrCAeb5fg7qACAgISJJBXUAEBAQkyaDeNBsIMB+DuoAAJBnUG+YJC5j/+zWoC4iAgIAkGdQFREBAQJIM6s2xgQB1MKgLCECSQb0xnrCAur5fg7qACAgISJJBXUAEBAQkyaDeBBsIUB+DuoAAJBnUG+AJC6j3+zWoC4iAgIAkGdQFREBAQJIM6tWygQB1M6gLCECSQb1SnrCANr5fg7qACAgISJJBXUAEBAQkyaBeFRsI0A6DuoAAJBnUK+IJC2jm+/0Og7qACAgISJJBXUAEBAQkyaA+OxsI0CaDuoAAJBnUZ+YJC2jm+92VQV1ABAQEJMmgLiACAgKSZFCfhQ0EaJ9BXUAAkgzqM/CEBTTz/R7IoC4gAgICkmRQFxABAQFJMqhPxgYC9MWgLiAASQb1iXjCApr5fosY1AVEQEBAkgzqAiIgICBJBvVR2UCAfhnUBQQgyaA+Ik9YQDPfb5pBXUAEBAQkyaAuIAICApJkUB+cDQRYBoO6gAAkGdQH5gkLaOb7HYRBXUAEBAQkyaAuIAICApJkUB+EDQRYHoO6gAAkGdQH4AkLaOb7HZxBXUAEBAQkyaAuIAICApJkUE+zgQDLZlAXEIAkg3qSJyygme93VAZ1AREQEJAkg7qACAgISJJBvYgNBODbDOoCApBkUC/gCQto5vudjEFdQAQEBCTJoC4gAgICkmRQP5ANBGA3BnUBAUgyqB/AExbQzPc7C4O6gAgICEiSQV1ABAQEJMmgvisbCMBBDOoCApBkUN+FJyygme93dgZ1AQEEJMmgLiCAgCQZ1L/DBgJQwqAuIABJBvX/4wkLaOb7rYpBXUAAAUla/KAuIICAZC18ULeBAGQtfFAXEIC8RQ/qnrCAZr7fai10UBcQQEAOb5GDuoAAAjKEBQ7qNhCAISxwUBcQgGEsblD3hAU08/02YUGDuoAAAjKsxQzqAgIIyNAWMqjbQACGtpBBXUAAhreIQd0TFtDM99uczgd1AQEEZDxdD+oCAgjImDoe1G0gAGPqeFAXEIBxdTuoe8ICmvl+m9bhoC4ggIBMo7tBXUAAAZlKZ4O6DQRgKp0N6gICMJ2uBnVPWEAz3283OhnUBQQQkOl1MagLCCAgc+hgULeBAMyhg0FdQADm0fyg7gkLaOb77VLDg7qAAAIyr2YHdQEBBGRujQ7qNhCAuTU6qAsIwPyaHNQ9YVXGEwIsWGODuoAICFCPpgZ1AREQoCYNDeo2EICaNDSoCwhAXZoZ1D1hVcYTFhARTQzqAiIgQJ2qH9QFRECAWlU+qNtAAGpV+aAuIAD1qnpQ94RVGU9YwPNUOqgLiIAA9atyUBcQAQFaUOGgbgMBaEGFg7qAALShukHdE1ZlPGEB+6poUBcQAQHaUs2gLiACArSmkkHdBgLQmkoGdQEBaE8Vg7onrMp4wgK2NvOgLiACArRr1kFdQAQEaNmMg7oNBKBlMw7qAgLQttkGdU9YlfGEBaTMMKgLiIAAfZh8UBcQAQF6MfGgbgMB6MXEg7qAAPRj0kHdE1ZlPGEBhzbRoC4gAgL0Z5JBXUAEBOjRBIO6DQSgRxMM6gIC0KfRB3VPWJXxhAUMasRBXUAEBOjbaIO6gAgI0LuRBnUbCEDvRhrUBQSgf6MM6gICQMoRRwDQvWfi1tXDAgJAGSM6AAkPx6vG+UNNBASgZ/fH68f6YxUFBKBX34i3re4c7w92t4EA9GmU4VxAAHrnj3MHIGG04VxAAHo24nAuIAC9Gnk432QDAejH6MO5gAD0aILhfJMnLIA+TDKcCwhAbyYazgUEoCcTDuebbCAAbZt0OBcQgF5MPJxv8oQF0K7Jh3MBAejBDMO5gAC0bqbhfJMNBKA9sw3nAgLQshmH802esADaMutwLiAArZp5OBcQgBZVMJxvsoEAtKGK4VxAAFpTyXC+yRMWQP2qGc4FBKAlFQ3nAgLQisqG8002EIB6VTecCwhACyoczjd5wgKoU5XDuYAA1K7S4VxAAGpW8XC+yQYCUJeqh3MBAahV5cP5Jk9YAPWofjgXEIAaNTCcb/KEVZnVyhkwn/XaGczmG/GO1X1t/UcWEID5NTOcCwhATRoazjfZQADm1dRwLiAAtWhsOBcQgBo08k+c78UGAjCPJodzAQGYW6PD+SZPWADTa3Y4FxCAOTU8nAsIwFwaH8432UAAptP8cC4gAHPoYDjf5AkLYBpdDOcCAjC1ToZzAQGYUkfD+SYbCMC4uhrOBQRgKp0N55s8YQGMp7vhXEAAptDhcC4gAGPrdDjfZAMBGF63w7mAAIyp4+F8kycsgGF1PZwLCMBYOh/OBQRgDAsYzjfZQACGsYjhXEAAhraQ4XyTJyyAw1vMcC4gAENa0HAuIABDWdhwvskGApC3uOFcQACGsMDhfJMnLICcRQ7nAgJwWAsdzgUE4DAWPJxvsoEAlFn0cC4gAFkLH843ecIC2N7ih3MBAcgwnAsIQDHD+fPYQAAOZjgXEIAEw/muPGEB7M9wLiAACYZzAQEoZjjflw0EYHeGcwEBSDCcH8gTFsDzGc4FBCDBcC4gAMUM51uzgQD8P8O5gAAkGM6LeMIC+BbDuYAAJBjOBQSgmOE8xQYCLJ3hXEAAEgznaZ6wgCUznAsIQILhXEAAihnOD80GAiyR4VxAABIM54PwhAUsjeFcQAASDOcCAlDMcD4oGwiwFIZzAQFIMJwPzhMWsASGcwEBSDCcCwhAMcP5aGwgQM8M5wICkGA4H5UnLKBXhnMBAUgwnAsIQDHD+SRsIEBvDOcCApBgOJ+MJyygJ4ZzAQFIMJwLCEAxw/nkbCBADwznAgKQYDifhScsoHWGcwEBSDCcCwhAMcP5rGwgQKsM5wICkGA4n50nLKBFhnMBAUgwnAsIQDHDeTVsIEBLDOcCApBgOK+KJyygFYZzAQFIMJwLCEAxw3mVbCBA7QznAgKQYDivlicsoGaGcwEBSDCcCwhAMcN59WwgQI0M5wICkGA4b4InLKA2hnMBAUgwnAsIQDHDeVNsIEAtDOcCApBgOG+OJyygBoZzAQFIMJwLCEAxw3mzbCDAnAznAgKQYDhvmicsYC6GcwEBSDCcCwhAMcN5F2wgwNQM5wICkGA474YnLGBKhnMBAUgwnAsIQDHDeXdsIMAUDOcCApBgOO+SJyxgbIZzAQFIMJwLCEAxw3nXbCDAWAznAgKQYDjvnicsYAyGcwEBSDCcCwhAMcP5YthAgCEZzgUEIMFwviiesIChGM4FBCDBcC4gAMUM54tkAwEOy3AuIAAJhvPF8oQFHIbhXEAAEgznAgJQzHC+eDYQIMNwjoAACYZzwhMWUM5wjoAACYZzBAQoZjhngw0E2JbhHAEBEgznPIcnLGAbhnMEBEgwnCMgQDHDOXuwgQD7MZwjIECC4Zx9eMIC9mI4R0CABMM5AgIUM5yzBRsI8FyGcwQESDCcsyVPWMAmwzkCAiT8ftxgOGdbq6H/gut15f+FV350ADcQAAQEAAEBQEAAQEAAEBAABAQAAQFAQABAQAAQEAAEBAABAUBAAEBAABAQAAQEAAEBQEAAQEAAEBAABAQAAQFAQABAQAAQEAAEBAABAQABAUBAABAQAAQEAAEBAAEBQEAAEBAABAQAAQEAAQFAQAAQEAAEBAABAQABAUBAABAQAAQEAAEBAAEBQEAAEBAABAQAAQEAAQFAQAAQEAAEBAABAQABAUBAABAQAAQEAAQEAAEBQEAAEBAABAQABAQAAQFAQAAQEAAEBAAEBAABAUBAABAQAAQEAAQEAAEBYGarof+C6/+Jcxwr7PHBrZwBbiB7+y+HCiAgAgKAgABQd0D+3aECCEjGVxwqgIBkfNmhAgiIgAAwWUD+1aECCEjGPzpUAAEREAAmC8gXHSrAEgz/Z2Edj6/507Bgjw/On4WFG8g+H8jX4ynHCiAgGZ91rAACkvG4YwUQkIxPOlaA/o0w6a3Pj6/4Nx3Crh+cER03kH0/ka/GFxwsgIBkPOJgAQQk468dLEDvRnmRXZ+IL/mHCWGXD84GghvIAR/JM/FxRwsgIBkfcrQAnd+ox/nLrl/m78SCXT44T1i4gRz4mTwRn3e4AAKS8QGHC9D1jXqsv/D6sngiXNfh2R+cbwI3kC0+lCfjbx0vgIBk/KHjBej4Rj3eX3p9PJ6OCxwxbHxwnrBwA9nqU/l6/LEDBnADydxBfiD+IY46ZHADwQ2k9GN5Oh5yxABuIJk7yJl41N/MC24guIGUfy6fir9wyABuIJk7yOl4zL/gFtxAcAMp/2Aejw86ZgA3kMwd5PJ43N+LBW4guIGUfzJ/F2cdNIAbSOYOcn48Gd/jsMENBDeQ0o/mq/FrjhrADSRzB9mJj8R1jhs3EGeAgJQn5LL4TJzrwBEQ6MVk/4TG6sm413EDuIFk7iBH4qNxtSPHDQQEpDwhF8djcZ5DR0CgB5P+ISOrL8ZbHTmAgGQS8mA84NABurhRT/1/cH0s/iZe6eBZ6AfnCQsBOVRCfjAe9c+lIyDQuhn+oPXVP8dPxX84egABKU/Ix+PN8U2HDyAg5Ql5KN7j8AEEJJOQ98f7HT9Au2ac9NarOBu/6CdgUR+cER0BGSghO/FA3O5HQECgRTuzfkzfjJ+N+/wIAAJSnpD16m3+lF6AJm/UNfyHWL8zfitc7VnCB+d/5wjI4An5mXgwjvs5EBAQkPKEXBN/7g84QUCgHTvVfFiPxJn4mB8EQEDKE/J0/ET8rp8EoJEbdW3/gdZvirP+rYV0+8F5wkJARk3IRfFgXOenQUCgbjsVfmL/FNfHPfGffhwAN5DMPeTSuD+u9wPhBgJuIKUf2t/Ha+OO+JKfCMANJHMPeVHcHe+KY34o3EBAQMojclncGzfXe1cCAUFAao7IK+LX42Z/XhYCAgKSiciPxN1xaxz1oyEgICDlEXlJ3BVviQv8cAgICEh5RI7FjXFHvMaDFgICApLJyKXxhrg1rvQTIiAgIJmMvCx+Om6IH40jfkoEBASkPCPnx+vi1XFtvMLf7IuAgIBkQvLdcXWciSvjdPyQOwkCAgKSScmxuCROxcVxKl4cJ+NkXBjnx04cjRf5yREQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACY1/8CK5kPkcV2STkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDMtMThUMTc6NTM6NTYrMDA6MDAKU39mAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTAzLTE4VDE3OjUzOjU2KzAwOjAwew7H2gAAAABJRU5ErkJggg=="
+                            height="20px" width="20px">
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <header class="d-flex justify-between menu-header" style="display: none;">
+
+            <div class="side-bar-navigation fade" id="side-bar-navigation">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/contactus">Contact Us</a></li>
+                    <li><a href="http://pxs7540.uta.cloud/wp/">Blog</a></li>
+                    <li><a href="/login">Login / Register</a></li>
+                </ul>
+            </div>
+        </header>
+        <section class="info-section-container ">
+            <div class="poster d-flex justify-around"><img src="shop1.png" height="400" width="400" alt="laundy-done">
+                <div class="d-flex flex-direction-column justify-center">
+                    <p class="font-oswald text-header">Welcome To The School Marketplace</p>
+                    <p class="text-description">Mercado Escolar is a mordern school marketplace. One stop Solution for all
+                        the student needs.<br>Your one-stop solution for getting your school essentials.</p>
                 </div>
             </div>
-            @if (session('mesagesent'))
-            <div class="alert alert-success" role="alert">
-                {{ session('mesagesent') }}
-            </div>
-        @endif
-            <div class="text-center heading">Home</div>
-            <div class="dummy-text">
-                <p>Your real shopping partner is StudentSocials. Get your shopping list and take advantage of the services
-                    and experience offered here.</p>
-            </div>
-        </div>
-        <div id="about">
-            <div class="text-center heading">About</div>
-            <div class="dummy-text">
-                <p>You can find products and accessories on our website that are primarily needed for your study. Product
-                    availability is updated by business owners for students to purchase.Business owners that join receive a
-                    platform where they can add their own products for sale after doing so. Businesses will also advertise
-                    here in the center, and promotions will be broadcast here.</p>
-            </div>
-        </div>
-        <div id="services">
-            <div class="text-center heading">Services</div>
-            <div class="dummy-text">
-                <center>
-                    <p class="fb"><b>Shopping Complex</b></p>
-                </center>
-                <p>This website offers you the goods and materials that are most frequently needed for your studies.
-                    Businesses update their inventory so that students can purchase it.</p>
-                <p><strong>A marketplace for students</strong></p>
-                <p>Students can sell their own stuff that are no longer in use to other students in addition to purchasing
-                    goods and necessities from company owners.</p>
-                <p><strong>Clubs</strong></p>
-                <p>Students who are interested in cooperating or exchanging ideas form clubs and invite one another to join
-                    them, or they simply join clubs that already exist.</p>
-                <p><strong>Posts</strong></p>
-                <p>The substance of student posts is highly critical and instructive for other students. Additionally, some
-                    pupils have the opportunity to post their own thoughts.</p>
-                <p><strong>Advertisements</strong></p>
-                <p>By running advertisements and campaigns, business owners promote themselves and grow their companies.</p>
-                <p><strong>Manage Users</strong></p>
-                <p>Certain users have the authority to manage other schools,users and their posts.</p>
-            </div>
-        </div>
-        <div id="contact">
-            <div class="text-center heading">Contact</div>
-            <div class="dummy-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id nulla nec purus
-                luctus posuere. Fusce tempus dignissim orci id facilisis. Phasellus et justo at risus aliquam egestas eget.
-                <div class="pt-8">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-1"></div>
-                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-10">
-                            <div class="flex align-items-center justify-content-center">
-                                <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
-                                    <div class="text-center mb-5">
-                                        <div class="text-900 text-3xl font-medium mb-3">Contact Us</div>
-                                    </div>
-                                    <form method="POST" action="{{ url('upload-query') }}">
-                                        @csrf
-                                        <div class="form-group"> <label for="firstname"
-                                                class="block text-900 font-medium mb-2">First
-                                                Name</label>
-                                            <input id="firstname" type="text" name="firstname"
-                                                class="p-inputtext p-component w-full mb-3">
-                                        </div>
-
-                                        @error('firstname')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        <div class="form-group"><label for="lastname"
-                                                class="block text-900 font-medium mb-2">Last Name</label>
-                                            <input id="lastname" type="text" name="lastname"
-                                                class="p-inputtext p-component w-full mb-3">
-                                        </div>
-
-                                        @error('lastname')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        <div class="form-group"><label for="phone"
-                                                class="block text-900 font-medium mb-2">Phone</label>
-                                            <input id="phone" type="number" class="p-inputtext p-component w-full mb-3"
-                                                name="phone_number">
-                                        </div>
-
-                                        @error('phone_number')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        <div class="form-group"><label for="email"
-                                                class="block text-900 font-medium mb-2">Email</label><input id="email"
-                                                type="text" name="emailaddress"
-                                                class="p-inputtext p-component w-full mb-3"></div>
-
-                                        @error('emailaddress')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                        <div class="form-group"><label for="query"
-                                                class="block text-900 font-medium mb-2">Query</label>
-                                            <textarea id="query" name="query" class="p-inputtextarea p-inputtext p-component w-full mb-3" rows="5"
-                                                cols="90"></textarea>
-                                        </div>
-
-                                        <button aria-label="Submit" class="p-button p-component w-full"><span
-                                                class="p-button-icon p-c p-button-icon-left pi pi-user"></span><span
-                                                class="p-button-label p-c">Submit</span></button>
-                                    </form>
-                                </div>
-                            </div>
+            <section class="info-section-container">
+                <div class="d-flex flex-direction-row justify-around info-link">
+                    <p><span class="font-oswald text-header"> A Whole New shopping Experience !</span><br><br><span
+                            class="about-description">Quality and Customer Satisfaction are the core values of Mercado
+                            Escolar <br>Our mission is to provide our customers the best selection, the lowest costs, and
+                            the greatest ease.</span><br><br><a class="services-link" href="/about">Read more about us <img
+                                class="arrow-right" alt="right arrow"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA9UAAAMpCAYAAAAKGhB9AAAVAElEQVR42u3Z0Q3EIBBDwfTf9F0PJnJYmCnBKz6eeB4AAAAAAGCm3yILAgAAIKJfZGUAAABEtMAGAABASO/BZQAAABDT4hoAAAAxLa4BAAAQ06O5JAAAAIJaXAMAACCmhTUAAACCWlwDAAAgpm/k8gAAAAhqYQ0AAICgFtYAAAAIanENAACAoBbWAAAAIKiFNQAAAIJaWAMAACCohTUAAACCWlgDAAAgqhHWAAAACGphDQAAgKAW1gAAAAhqYQ0AAICoFtYAAAAIaoQ1AAAAolpYAwAAIKiFNQAAAKJaWAMAACCoEdYAAACiGmENAACAoBbWAAAAiGphDQAAgKhGWAMAAAhqhDUAAICoRlgDAAAgqoU1AAAAglpYAwAAIKoR1gAAAKIaYQ0AACCqEdYAAAAIamENAACAqEZYAwAAiGqENQAAgKhGWAMAACCqhTUAAACiGmENAAAgqhHWAAAAohphDQAAIKoR1gAAAIhqYQ0AAICoRlgDAACIaoQ1AACAqEZYAwAAiGqENQAAAKIaYQ0AACCqEdYAAACiGmENAAAgqhHWAAAAohphDQAAgLBGWAMAAIhqhDUAAICoRlgDAACIaoQ1AAAAwhphDQAAIKoR1gAAAKIaYQ0AACCqEdYAAADCGoQ1AACAqEZYAwAACGuENQAAgKhGWAMAAAhrhDUAAACiGmENAAAgrBHWAAAAohphDQAAIKwR1gAAAKIahDUAAICwRlgDAAAIa4Q1AACAqEZYAwAACGsQ1gAAAMIaYQ0AACCsEdYAAADCGmENAAAgrBHWAAAAwhqENQAAgLBGWAMAAAhrhDUAAICwRlgDAAAIaxDWAAAAwhphDQAAIKwR1gAAAMIaYQ0AACCsEdYAAAAIa4Q1AACAsEZYAwAACGuENQAAgLBGWAMAAAhrENYAAADCGmENAAAgrBHWAAAAwhphDQAAIKxBWAMAAAhrhDUAAICwRlgDAAAIa4Q1AACAsEZYAwAAIKwR1gAAAMIaYQ0AACCsEdYAAADCGmENAAAgrEFYAwAACGuENQAAgLBGWAMAAAhrhDUAAICwBmENAAAgrBHWAAAAwhphDQAAIKwR1gAAAMIaYQ0AACCsQVgDAAAIa4Q1AACAsEZYAwAACGuENQAAgLAGYQ0AACCsEdYAAADCGmENAAAgrBHWAAAAwhq8GgAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYQ3CGgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENQhrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWCGsAAACENcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1CGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAENYgrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1iCsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWIKwBAACENcIaAABAWCOsAQAAhDXCGgAAQFiDsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWIOwBgAAENYIawAAAGGNsAYAABDWCGsAAABhDcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGENwhoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYQ3CGgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENQhrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWCGsAAACENcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1CGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAENYgrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1iCsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWIKwBAACENcIaAABAWCOsAQAAhDXCGgAAQFiDsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWIOwBgAAENYIawAAAGGNsAYAABDWCGsAAABhDcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAACZiLAGAAAQ1ghrAAAAYY2w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gKBGUAMAAAhqBDUAAICgBkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoQVADAAAIagQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqENQAAACCGkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoENQAAgKAGQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghpBDQAAIKhBUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGrwagAAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDWCGgAAAHmIoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQgqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDUIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQQ2CGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUIOgBgAAENQIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1CCoAQAABDWCGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENQhqAAAAQY2gBgAAENQIagAAAEGNoAYAABDUCGoAAABBDYIaAABAUCOoAQAABDWCGgAAQFAjqAEAAAQ1ghoAAEBQg6AGAAAQ1AhqAAAAQY2gBgAAENQIagAAAEGNoAYAABDUIKgBAAAENYIaAABAUCOoAQAABDWCGgAAQFAjqAEAAAQ1CGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQIagAAAEENghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDWCGgAAQFCDoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQgqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDUIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQQ2CGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUINXAwAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAyEMENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoAZBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqEFQAwAACGoENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIahDUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGgQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqBDUAAICgBkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoQVADAAAIagQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqENQAAACCGkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoENQAAgKAGQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghpBDQAAIKhBUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoQ1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghoENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoAZBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqEFQAwAACGoENQAAgKBGUAMAAIhqBDUAAICgRlADAAAIahDUAAAAohpBDQAAIKgR1AAAAKIaQQ0AACCoEdQAAACiGrwSAAAAQY2gBgAAENUIagAAAEGNoAYAABDVCGoAAABBjaAGAABAVCOoAQAARDWCGgAAQFQjqAEAAAQ1ghoAAEBUI6gBAAAQ1QhqAAAAUY2gBgAAENQIagAAAFGNoAYAABDVCGoAAABENYIaAABAVCOoAQAARDWCGgAAQFQjqAEAABDVghoAAABRjaAGAAAQ1QhqAAAAUY2gBgAAENUIagAAAES1oAYAAEBUI6gBAABENYIaAABAVCOoAQAARDWCGgAAAFEtqAEAABDVCGoAAABhjaAGAAAQ1QhqAAAARLWgBgAAQFQLagAAAIQ1ghoAAEBUI6gBAABENYIaAAAAYS2oAQAAENWCGgAAAFGNoAYAABDWCGoAAABEtaAGAABAWAtqAAAARLWgBgAAQFgjqAEAAEQ1ghoAAABhLagBAAAQ1YIaAAAAYS2oAQAAENYIagAAAIS1oAYAAEBUC2oAAACEtaAGAABAWAtqAAAAhDWCGgAAAGEtqAEAABDWghoAAABhLaYBAAAQ1oIaAAAAhLWgBgAAQFwLagAAAIS1mAYAAEBcC2oAAAA4LKxdEgAAAHEtpgEAABDXYhoAAABxLaYBAABgamC7AAAAACJbSAMAAMC7oW09AL7yBx5QOIlPPrXuAAAAAElFTkSuQmCC"></a>
+                    </p><img src="shop2.png" alt="shop exp" class="rounded-corners">
+                </div>
+                <hr class="page-break">
+                <div class="d-flex flex-direction-row justify-around info-link"><img src="shop3.png" alt="46374"
+                        class=" rounded-corners ">
+                    <p><span class="font-oswald text-header">And There Is Something Extra... <br> We do pickup and deliver
+                            for Free ! </span><br><br><a class="services-link" href="/services">Explore our Services <img
+                                class="arrow-right" alt="arrow Right"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA9UAAAMpCAYAAAAKGhB9AAAVAElEQVR42u3Z0Q3EIBBDwfTf9F0PJnJYmCnBKz6eeB4AAAAAAGCm3yILAgAAIKJfZGUAAABEtMAGAABASO/BZQAAABDT4hoAAAAxLa4BAAAQ06O5JAAAAIJaXAMAACCmhTUAAACCWlwDAAAgpm/k8gAAAAhqYQ0AAICgFtYAAAAIanENAACAoBbWAAAAIKiFNQAAAIJaWAMAACCohTUAAACCWlgDAAAgqhHWAAAACGphDQAAgKAW1gAAAAhqYQ0AAICoFtYAAAAIaoQ1AAAAolpYAwAAIKiFNQAAAKJaWAMAACCoEdYAAACiGmENAACAoBbWAAAAiGphDQAAgKhGWAMAAAhqhDUAAICoRlgDAAAgqoU1AAAAglpYAwAAIKoR1gAAAKIaYQ0AACCqEdYAAAAIamENAACAqEZYAwAAiGqENQAAgKhGWAMAACCqhTUAAACiGmENAAAgqhHWAAAAohphDQAAIKoR1gAAAIhqYQ0AAICoRlgDAACIaoQ1AACAqEZYAwAAiGqENQAAAKIaYQ0AACCqEdYAAACiGmENAAAgqhHWAAAAohphDQAAgLBGWAMAAIhqhDUAAICoRlgDAACIaoQ1AAAAwhphDQAAIKoR1gAAAKIaYQ0AACCqEdYAAADCGoQ1AACAqEZYAwAACGuENQAAgKhGWAMAAAhrhDUAAACiGmENAAAgrBHWAAAAohphDQAAIKwR1gAAAKIahDUAAICwRlgDAAAIa4Q1AACAqEZYAwAACGsQ1gAAAMIaYQ0AACCsEdYAAADCGmENAAAgrBHWAAAAwhqENQAAgLBGWAMAAAhrhDUAAICwRlgDAAAIaxDWAAAAwhphDQAAIKwR1gAAAMIaYQ0AACCsEdYAAAAIa4Q1AACAsEZYAwAACGuENQAAgLBGWAMAAAhrENYAAADCGmENAAAgrBHWAAAAwhphDQAAIKxBWAMAAAhrhDUAAICwRlgDAAAIa4Q1AACAsEZYAwAAIKwR1gAAAMIaYQ0AACCsEdYAAADCGmENAAAgrEFYAwAACGuENQAAgLBGWAMAAAhrhDUAAICwBmENAAAgrBHWAAAAwhphDQAAIKwR1gAAAMIaYQ0AACCsQVgDAAAIa4Q1AACAsEZYAwAACGuENQAAgLAGYQ0AACCsEdYAAADCGmENAAAgrBHWAAAAwhq8GgAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYQ3CGgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENQhrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWCGsAAACENcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1CGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAENYgrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1iCsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWIKwBAACENcIaAABAWCOsAQAAhDXCGgAAQFiDsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWIOwBgAAENYIawAAAGGNsAYAABDWCGsAAABhDcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGENwhoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYQ3CGgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENQhrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWCGsAAACENcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1CGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAENYgrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWCOsAQAAhDUIawAAAGGNsAYAABDWCGsAAABhjbAGAAAQ1iCsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAEBYg7AGAAAQ1ghrAAAAYY2wBgAAENYIawAAAGGNsAYAABDWIKwBAACENcIaAABAWCOsAQAAhDXCGgAAQFiDsAYAABDWCGsAAABhjbAGAAAQ1ghrAAAAYY2wBgAAQFgjrAEAAIQ1whoAAEBYI6wBAACENcIaAABAWIOwBgAAENYIawAAAGGNsAYAABDWCGsAAABhDcIaAABAWCOsAQAAhDXCGgAAQFgjrAEAAIQ1whoAAACZiLAGAAAQ1ghrAAAAYY2w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gKBGUAMAAAhqBDUAAICgBkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoQVADAAAIagQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqENQAAACCGkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoENQAAgKAGQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghpBDQAAIKhBUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGrwagAAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDWCGgAAAHmIoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQgqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDUIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQQ2CGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUIOgBgAAENQIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1CCoAQAABDWCGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENQhqAAAAQY2gBgAAENQIagAAAEGNoAYAABDUCGoAAABBDYIaAABAUCOoAQAABDWCGgAAQFAjqAEAAAQ1ghoAAEBQg6AGAAAQ1AhqAAAAQY2gBgAAENQIagAAAEGNoAYAABDUIKgBAAAENYIaAABAUCOoAQAABDWCGgAAQFAjqAEAAAQ1CGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQIagAAAEENghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDWCGgAAQFCDoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQY2gBgAAENQgqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUCOoAQAABDUIagAAAEGNoAYAABDUCGoAAABBjaAGAAAQ1AhqAAAAQQ2CGgAAQFAjqAEAAAQ1ghoAAEBQI6gBAAAENYIaAABAUINXAwAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAyEMENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoAZBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqEFQAwAACGoENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIahDUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGgQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqBDUAAICgBkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaQQ0AACCoQVADAAAIagQ1AACAoEZQAwAACGoENQAAgKBGUAMAAAhqENQAAACCGkENAAAgqBHUAAAAghpBDQAAIKgR1AAAAIIaBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoENQAAgKAGQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghpBDQAAIKhBUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoEZQAwAACGoQ1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqBHUAAAAghoENQAAgKBGUAMAAAhqBDUAAICgRlADAAAIagQ1AACAoAZBDQAAIKgR1AAAAIIaQQ0AACCoEdQAAACCGkENAAAgqEFQAwAACGoENQAAgKBGUAMAAIhqBDUAAICgRlADAAAIahDUAAAAohpBDQAAIKgR1AAAAKIaQQ0AACCoEdQAAACiGrwSAAAAQY2gBgAAENUIagAAAEGNoAYAABDVCGoAAABBjaAGAABAVCOoAQAARDWCGgAAQFQjqAEAAAQ1ghoAAEBUI6gBAAAQ1QhqAAAAUY2gBgAAENQIagAAAFGNoAYAABDVCGoAAABENYIaAABAVCOoAQAARDWCGgAAQFQjqAEAABDVghoAAABRjaAGAAAQ1QhqAAAAUY2gBgAAENUIagAAAES1oAYAAEBUI6gBAABENYIaAABAVCOoAQAARDWCGgAAAFEtqAEAABDVCGoAAABhjaAGAAAQ1QhqAAAARLWgBgAAQFQLagAAAIQ1ghoAAEBUI6gBAABENYIaAAAAYS2oAQAAENWCGgAAAFGNoAYAABDWCGoAAABEtaAGAABAWAtqAAAARLWgBgAAQFgjqAEAAEQ1ghoAAABhLagBAAAQ1YIaAAAAYS2oAQAAENYIagAAAIS1oAYAAEBUC2oAAACEtaAGAABAWAtqAAAAhDWCGgAAAGEtqAEAABDWghoAAABhLaYBAAAQ1oIaAAAAhLWgBgAAQFwLagAAAIS1mAYAAEBcC2oAAAA4LKxdEgAAAHEtpgEAABDXYhoAAABxLaYBAABgamC7AAAAACJbSAMAAMC7oW09AL7yBx5QOIlPPrXuAAAAAElFTkSuQmCC"></a>
+                    </p>
+                </div>
+                <hr class="page-break">
+            </section>
+            <div class=" d-flex flex-direction-column align-items-center">
+                <div class="container w-100" style="display: flex; justify-content:space-between;">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-header font-damion offer-info">Flat 20% Off</p> <span class="font-oswald"> First
+                                time customers only*</span> <br><br><br><br><br><br><br><br>
+                            <p> <span> *Terms and Conditions Apply. </span> </p>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-1"></div>
-                    </div>
+                        <div>
+                            <img src="special-offer.png" height="280px" width="280px">
+                        </div>
 
+                    </div>
                 </div>
+                {{-- <div class="fade w-100">
+                    <div class=" review-content d-flex justify-around">
+                        <div class="font-oswald d-flex flex-direction-column justify-center">Pricing</div>
+                        <div class="font-oswald d-flex flex-direction-column justify-evenly price-listing font-roboto">
+                            <span>Same Day Pickup:   5$ or 2.5% of product price*</span><span>1 or 2 Day Pickup:   2$ or
+                                1.5% of product price*</span><span>No Rush Pickup:   10% discount</span>
+                        </div>
+                        <div class="font-oswald d-flex flex-direction-column justify-evenly font-roboto"><span>Same Day
+                                Delivery:   10$ or 2.5% of product price*</span><span>1 or 2 Day Delivery:   5$ or 1.5% of
+                                product price*</span><span>No Rush Delivery:   10% discount</span></div>
+                    </div>
+                </div>
+                <div class="slides fade w-100">
+                    <div class="carousel review-content d-flex flex-direction-column">
+                        <div class="font-oswald d-flex justify-center">Customer Reviews</div>
+                        <div class="customer-review d-flex w-100"><span>James<img
+                                    src="4stars.png"></span><span>Walker<img
+                                    src="5stars.png"></span></div>
+                        <div class="customer-review d-flex w-100"><span>John<img
+                                    src="4andhalfstars.png"></span><span>Maria<img
+                                    src="3andhalfstars.png"></span></div>
+                    </div>
+                </div> --}}
+                <div class="pill-container"><span class="pills active"></span><span class="pills"></span><span
+                        class="pills"></span></div>
             </div>
-        </div>
+            <footer class="w-100 d-flex flex-direction-column align-items-center">
+                <div class="social-media-links d-flex flex-direction-row justify-around"><a href="/"><img
+                            src="instagram.png" alt="logo-instagram"></a><a href="/"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAACGVBMVEUAAAAAAP8Af39VVao/P38zZpkqVapISJE/X584VY0zZplFXKI/VZQ6Ypw/X588WpY4VZs8VZ05XJY3WJs/VZ89W5k9V545Wpw/V5c9XJo8Wp06V5k4XJs+WZc8V5o6W5w5WZk+V5s7WJo5XJw+Wpk8WJs6Wpo+WJw6WJw5W5k7W5o6WZw9V5k8Wps6W5o9Wpw8WZk7W5s6Wpw9WJo8W5w8Wpk7WJs6W5w9WZo8WJs6WZs9WJw8Wpo9Wpo8WZw7W5o9WZk8Wpw7WJo8WZk8WJo7Wps6WZo8WJs8Wpw7WZo9Wpo8WZs7W5w7Wpo9WZs8Wpo8Wps7WZs6Wpo8WZk7Wpo8Wps7WZk8WZo7Wps8Wps8Wpo8WZs7WZs8Wpo7Wpo8WZs7Wpo7Wps8Wpo8Wps8WZo7Wps7WZo8WZs7Wps8Wpo7Wps8WZs8Wpo8Wps7WZs7Wpo8WZs7WZs8WZo7WZo7Wpo8Wps8WZo7Wps8WZo8Wps7WZs7Wps8WZs7Wpo7WZs8WZs7WZs7Wpo7Wpo7Wps8WZo8Wpo8Wps7WZo7Wps8WZo7Wps7WZo8WZs7WZo8Wpo8WZs7Wps8WZs8Wpo8Wps7WZs7Wpo8WZs7Wpo8WZo8Wps7WZo7Wpo8Wps8WZo7Wps8Wps8Wpo7WZs8WZo8WZs7Wpo7WZs8WZs8Wpo7WZs7Wpo7Wpo7Wps8Wpo8Wps7WZo8WZo7WZo8Wps7WZqR/l9WAAAAs3RSTlMAAQIDBAUGBwgJCgsMDRAREhUWFxgZHR8gISIjJCUmJygpKywtLjAxNDU4OTo7PT4/QEFCQ0RFRkdISktMT1BRU1VWWFlaW1xdXmBhYmNkZWZnaGprbm9yc3Z3e31/gYOEhYeIjI2Oj5KTlZeYmZqbnJ+goqOkpaaoqausrq+wsbO0t7i5uru8vb/AwcLExsfIysvMzc7P0dPU1dbX2Nrc3d7g4eLj5OXm5+rr7e7v8vT293pkBC4AAAKHSURBVHjaY2CgDmDl52cmVq2Uf8mU9WsXL1u3dkK+uwgh1VxBExbmOCuxgdnqXsUrWl1Y8Chnj1xerMeILMJi3TDfmwmXesO5pZKYomptfcpYlTPHLTDCbpDzcj8sohw1Dfy4rBaflMaIob49H084cjcVoulgrs1jxBd6bC0pqAIJ9ejmM6rbOTo6OvJBuTxTPZFlTebzoal3WjCpODc3d7Y7TEBmuTySB+bpoalPnKwKprM94EI+HQjp6EI09e6TeBnQNTD2OsLDYIU4qnrOpXIMGBoYtGfBojysAN0DVSCSX0pKqgxJA0O3FZQxTRNNQ5YvyFlrFixYMN8ASditAkIrzkUP9VozBgaGfi2MpLyKG0yHpqPLNOkzMDDMxEyIjRZgqtoWWdA8Nzd3CSiUZ5Tn5ubmKiDLRSSBqTkoRqXlOjo6cDAwMGiBIrrVA8WwenAyWo+SQdICkXnZKBrEwb7lX8ZArAbO1SBSbC7RGhg2YNNQGhDgzcXAwGAcEBAQ0I1FA99yFDETWCjNBIVSjhxqREA8zUxsPEjOBlOzpInVYFkLpiociNUQFQ+mgjOJ1dBsDKZkFzASp4F3FSeEMVGXOA1eJVBGUAlxGvpNYGXAUlliNJhOhTs9vJIIDcyTbRD1zUxzwhpCGpA4OouFUDSUJScnr0bVoLRMAiVK2tmQeNqgdOeFkmL4Z9mjlqTF5Uz4CmPOnhj0arO+gg23er7uDAwxlqIuUVzqFWfGYhFlDF9qh1U5U+ByR+wGaUxpUMEU1ZvQLIXLaubAhfXWKPUyp0v3dHu8TQbXlpXlgVoCILawQWjdqiprRkKNAUGnrM7lm9au27ioNdWGl+jWCRvRbRNCAABzs5tfYUj6lgAAAABJRU5ErkJggg=="
+                            alt="logo-facebook"></a><a href="/"><img
+                            src="data:image/png;base64,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"
+                            alt="logo-twitter"></a><a href="/"><img
+                            src="data:image/png;base64,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"
+                            alt="logo-yelp"></a></div>
+                <ul class="footer-links d-flex flex-direction-row justify-around">
+                    <li class="footer-link-item"><a href="/">Home</a></li>
+                    <li class="footer-link-item"><a href="/">Services</a></li>
+                    <li class="footer-link-item"><a href="/">About</a></li>
+                    <li class="footer-link-item"><a href="/">ContactUs</a></li>
+                </ul>
+                <p class="copyright d-flex justify-center">Mercado Escolar © 2021. All Rights Reserved.</p>
+            </footer>
+        </section>
     </div>
-@endsection
+    {{-- @endsection --}}

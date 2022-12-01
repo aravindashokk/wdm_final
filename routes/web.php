@@ -31,7 +31,9 @@ Route::get('/custom-logout', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/', [PagesController::class, 'index']);
-Route::get('/contacts', [PagesController::class, 'contacts']);
+Route::get('/contactUs', [PagesController::class, 'contacts']);
+Route::get('/services', [PagesController::class, 'services']);
+Route::get('/about', [PagesController::class, 'about']);
 Route::post('upload-query', [PagesController::class, 'uploadquery']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin');
@@ -81,7 +83,7 @@ Route::name('businessowner.')->prefix('businessowner')->group(function () {
     Route::post('update-profile', [BusinessDashboardController::class, 'saveaccountpassword'])->name('updatepassword');
     Route::post('save-new-email', [BusinessDashboardController::class, 'saveaccountemail'])->name('saveaccountemail');
     Route::get('open-conversations', [BusinessDashboardController::class, 'allchats'])->name('allchats');
-    Route::get('adverts', [StudentDashboardController::class, 'adverts'])->name('adverts');
+    Route::get('adverts', [BusinessDashboardController::class, 'adverts'])->name('adverts');
     Route::post('store-adverts', [BusinessDashboardController::class, 'storeadvert'])->name('storeadvert');
     Route::get('my-adverts', [BusinessDashboardController::class, 'myadverts'])->name('myadverts');
     Route::get('advert-details/{slug}', [BusinessDashboardController::class, 'advertdetails'])->name('advert');

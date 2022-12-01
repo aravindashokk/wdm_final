@@ -14,7 +14,7 @@
 
                                     <div class="item-img">
                                         <a href="{{ route('businessowner.advert', $item->slug) }}">
-                                            <img src="{{ asset('storage/adverts/' . $item->image) }}" alt="img-placeholder">
+                                            <img src="{{ asset('storage/products/' . $item->image) }}" alt="img-placeholder" style="height:120px;">
                                         </a>
                                     </div>
                                 </div>
@@ -35,8 +35,7 @@
                                                 <h4 class="item-price">$ {{ $item->price }}</h4>
                                             </div>
                                         </div>
-
-                                        <a href="{{ route('student.removeadvert', $item->slug) }}"
+                                        <a href="{{ route('businessowner.removeadvert', $item->slug) }}"
                                             class="btn btn-danger btn-sm  mt-1 remove-wishlist waves-effect waves-float waves-light">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

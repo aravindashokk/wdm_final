@@ -5,10 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="">
-    <meta name="keywords" content=" web app">
-    <meta name="author" content="Student Business Program">
+
     <title>@yield('title')</title>
     <link rel="apple-touch-icon" href="{{ asset('app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('app-assets/images/ico/favicon.ico') }}">
@@ -17,128 +14,60 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
-    <!-- END: Vendor CSS-->
+
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap-extended.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap-extended.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/colors.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/components.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/dark-layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/bordered-layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/semi-dark-layout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/components.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/dark-layout.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/bordered-layout.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/semi-dark-layout.min.css') }}">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/dashboard-ecommerce.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('app-assets/css/core/menu/menu-types/horizontal-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/charts/chart-apex.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('app-assets/css/plugins/extensions/ext-component-toastr.min.css') }}">
     <!-- END: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat-list.css') }}">
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <!-- END: Custom CSS-->
-
     <link rel="stylesheet" href="{{ asset('app-assets/css/toastr.min.css') }}">
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     @livewireStyles
-
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
-    data-menu="vertical-menu-modern" data-col="">
+<body class="horizontal-layout horizontal-menu  navbar-floating footer-static  " data-open="hover"
+    data-menu="horizontal-menu" data-col="">
 
     <!-- BEGIN: Header-->
-    <nav
-        class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+    <nav class="header-navbar navbar-expand-lg navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center"
+        data-nav="brand-center">
+        <div class="navbar-header d-xl-block d-none">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a class="navbar-brand" href="#"><span class="brand-logo">
+                            <h2 class="brand-text mb-0">My Project</h2>
+                    </a></li>
+            </ul>
+        </div>
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">
-                <ul class="nav navbar-nav d-xl-none">
-                    <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon"
-                                data-feather="menu"></i></a></li>
-                </ul>
-                <ul class="nav navbar-nav bookmark-icons">
 
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
 
-                <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon"
-                            data-feather="moon"></i></a></li>
-                <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon"
-                            data-feather="search"></i></a>
-                    <div class="search-input">
-                        <div class="search-input-icon"><i data-feather="search"></i></div>
-                        <input class="form-control input" type="text"
-                            placeholder="Explore Student Program Project..." tabindex="-1" data-search="search">
-                        <div class="search-input-close"><i data-feather="x"></i></div>
-                        <ul class="search-list search-list-main"></ul>
-                    </div>
-             </li>
-                @role('student')
-
-                    @php
-                        $products = App\Models\Cart::where('student_id', Auth::user()->id)->get();
-                    @endphp
-                    <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#"
-                            data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span
-                                class="badge rounded-pill bg-danger badge-up">{{ count($products) }}</span></a>
-                        <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                            <li class="dropdown-menu-header">
-                                <div class="dropdown-header d-flex">
-                                    <h4 class="notification-title mb-0 me-auto">My Shopping Cart</h4>
-
-                                    <div class="badge rounded-pill badge-light-primary">{{ count($products) }} New
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="scrollable-container media-list">
-                                @forelse ($products as $product)
-                                    <a class="d-flex" href="#">
-                                        <div class="list-item d-flex align-items-start">
-                                            <div class="me-1">
-                                                <div class="avatar">
-                                                    @if ($product->cartproduct->image == null)
-                                                        <img src="https://ui-avatars.com/api/?name={{ $product->cartproduct->product_name }}"
-                                                            alt="avatar" width="32" height="32">
-                                                    @else
-                                                        <img src="{{ asset('storage/products/' . $product->cartproduct->image) }}"
-                                                            alt="avatar" width="32" height="32">
-                                                    @endif
-
-                                                </div>
-                                            </div>
-                                            <div class="list-item-body flex-grow-1">
-                                                <p class="media-heading"><span
-                                                        class="fw-bolder">{{ $product->cartproduct->product_name }} has
-                                                        paid {{ $product->cartproduct->price }} USD
-                                                        🎉</span>!</p><small class="notification-text">
-                                                    {{ $product->quantity }}.</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @empty
-                                    <a class="d-flex" href="#">
-                                        <div class="list-item d-flex align-items-start">
-                                            <div class="me-1">
-                                                <div class="avatar"><img
-                                                        src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
-                                                        alt="avatar" width="32" height="32"></div>
-                                            </div>
-                                            <div class="list-item-body flex-grow-1">
-                                                <p class="media-heading"><span class="fw-bolder">Your shopping cart is
-                                                        empty.
-                                                </p><small class="notification-text"> Please select items </small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                @endforelse
-                            </li>
-                        </ul>
-                    </li>
-                @endrole
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                         id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -179,13 +108,13 @@
                                     data-feather="message-square"></i> Chats</a>
                         @endrole
                         @role('student')
-                        <a class="dropdown-item" href="{{ route('student.profile') }}"><i class="me-50"
-                                data-feather="settings"></i>
-                            Settings</a>
-                    @endrole
+                            <a class="dropdown-item" href="{{ route('student.profile') }}"><i class="me-50"
+                                    data-feather="settings"></i>
+                                Settings</a>
+                        @endrole
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                             document.getElementById('logout-form').submit();">
                             <i class="me-50" data-feather="power"></i> {{ __('Logout') }}
                         </a>
 
@@ -200,7 +129,7 @@
 
 
 
-    @include('layouts.menu')
+    @include('layouts.top-menu')
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -209,18 +138,153 @@
         <div class="content-wrapper container-xxl p-0">
             <div class="content-header row">
             </div>
-            <div class="content-body">
+            <div class="content-body" style="padding-top:10vh;">
                 @yield('content')
-
             </div>
         </div>
     </div>
     <!-- END: Content-->
 
+
+    <!-- BEGIN: Customizer-->
+    <div class="customizer d-none d-md-block"><a
+            class="customizer-toggle d-flex align-items-center justify-content-center" href="#"><i
+                class="spinner" data-feather="settings"></i></a>
+        <div class="customizer-content">
+            <!-- Customizer header -->
+            <div class="customizer-header px-2 pt-1 pb-0 position-relative">
+                <h4 class="mb-0">Theme Customizer</h4>
+                <p class="m-0">Customize & Preview in Real Time</p>
+
+                <a class="customizer-close" href="#"><i data-feather="x"></i></a>
+            </div>
+
+            <hr />
+
+            <!-- Styling & Text Direction -->
+            <div class="customizer-styling-direction px-2">
+                <p class="fw-bold">Skin</p>
+                <div class="d-flex">
+                    <div class="form-check me-1">
+                        <input type="radio" id="skinlight" name="skinradio" class="form-check-input layout-name"
+                            checked data-layout="" />
+                        <label class="form-check-label" for="skinlight">Light</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="skinbordered" name="skinradio"
+                            class="form-check-input layout-name" data-layout="bordered-layout" />
+                        <label class="form-check-label" for="skinbordered">Bordered</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="skindark" name="skinradio" class="form-check-input layout-name"
+                            data-layout="dark-layout" />
+                        <label class="form-check-label" for="skindark">Dark</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="skinsemidark" name="skinradio"
+                            class="form-check-input layout-name" data-layout="semi-dark-layout" />
+                        <label class="form-check-label" for="skinsemidark">Semi Dark</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- Menu -->
+            <div class="customizer-menu px-2">
+                <div id="customizer-menu-collapsible" class="d-flex">
+                    <p class="fw-bold me-auto m-0">Menu Collapsed</p>
+                    <div class="form-check form-check-primary form-switch">
+                        <input type="checkbox" class="form-check-input" id="collapse-sidebar-switch" />
+                        <label class="form-check-label" for="collapse-sidebar-switch"></label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Layout Width -->
+            <div class="customizer-footer px-2">
+                <p class="fw-bold">Layout Width</p>
+                <div class="d-flex">
+                    <div class="form-check me-1">
+                        <input type="radio" id="layout-width-full" name="layoutWidth" class="form-check-input"
+                            checked />
+                        <label class="form-check-label" for="layout-width-full">Full Width</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="layout-width-boxed" name="layoutWidth" class="form-check-input" />
+                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Navbar -->
+            <div class="customizer-navbar px-2">
+                <div id="customizer-navbar-colors">
+                    <p class="fw-bold">Navbar Color</p>
+                    <ul class="list-inline unstyled-list">
+                        <li class="color-box bg-white border selected" data-navbar-default=""></li>
+                        <li class="color-box bg-primary" data-navbar-color="bg-primary"></li>
+                        <li class="color-box bg-secondary" data-navbar-color="bg-secondary"></li>
+                        <li class="color-box bg-success" data-navbar-color="bg-success"></li>
+                        <li class="color-box bg-danger" data-navbar-color="bg-danger"></li>
+                        <li class="color-box bg-info" data-navbar-color="bg-info"></li>
+                        <li class="color-box bg-warning" data-navbar-color="bg-warning"></li>
+                        <li class="color-box bg-dark" data-navbar-color="bg-dark"></li>
+                    </ul>
+                </div>
+
+                <p class="navbar-type-text fw-bold">Navbar Type</p>
+                <div class="d-flex">
+                    <div class="form-check me-1">
+                        <input type="radio" id="nav-type-floating" name="navType" class="form-check-input"
+                            checked />
+                        <label class="form-check-label" for="nav-type-floating">Floating</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="nav-type-sticky" name="navType" class="form-check-input" />
+                        <label class="form-check-label" for="nav-type-sticky">Sticky</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="nav-type-static" name="navType" class="form-check-input" />
+                        <label class="form-check-label" for="nav-type-static">Static</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="nav-type-hidden" name="navType" class="form-check-input" />
+                        <label class="form-check-label" for="nav-type-hidden">Hidden</label>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <!-- Footer -->
+            <div class="customizer-footer px-2">
+                <p class="fw-bold">Footer Type</p>
+                <div class="d-flex">
+                    <div class="form-check me-1">
+                        <input type="radio" id="footer-type-sticky" name="footerType" class="form-check-input" />
+                        <label class="form-check-label" for="footer-type-sticky">Sticky</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="footer-type-static" name="footerType" class="form-check-input"
+                            checked />
+                        <label class="form-check-label" for="footer-type-static">Static</label>
+                    </div>
+                    <div class="form-check me-1">
+                        <input type="radio" id="footer-type-hidden" name="footerType" class="form-check-input" />
+                        <label class="form-check-label" for="footer-type-hidden">Hidden</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End: Customizer-->
+
+
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-
-    <!-- BEGIN: Footer-->
 
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
@@ -231,17 +295,17 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
+    <script src="{{ asset('app-assets/vendors/js/ui/jquery.sticky.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
+    
     <!-- END: Page Vendor JS-->
-
+    <!-- BEGIN: Page JS-->
+    <script src="{{ asset('app-assets/js/scripts/pages/app-chat.js') }}"></script>
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script>
-    <script src="{{ asset('app-assets/js/core/app.js') }}"></script>
+    {{-- <script src="{{ asset('app-assets/js/scripts/customizer.min.js') }}"></script> --}}
     <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('app-assets/js/scripts/pages/dashboard-ecommerce.js') }}"></script>
-    <!-- END: Page JS-->
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
@@ -289,6 +353,16 @@
             });
     </script>
     @livewireScripts
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
 </body>
 <!-- END: Body-->
 
